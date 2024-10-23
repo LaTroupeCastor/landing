@@ -129,108 +129,51 @@
   }
 }
 
-.poppins-title {
+.header-1 {
     font-family: "Poppins", serif;
-    font-weight: bold;
-    font-style: normal;
-    font-size: 2rem;
-    color: #000000;
+    font-weight: 600;
+    font-size: 70px;
+    color: #0E0E2C;
 }
 
-.poppins-subtitle {
-    font-family: "Poppins", serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 1rem;
-    color: #000000;
-}
-
-.poppins-body-bold {
-    font-family: "Poppins", serif;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 1rem;
-    color: #000000;
-}
-
-.poppins-body {
-    font-family: "Poppins", serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 1rem;
-    color: #000000;
-}
-
-.poppins-little {
-    font-family: "Poppins", serif;
-    font-weight: 300;
-    font-style: normal;
-    font-size: 0.875rem;
-    color: #000000;
-}
-
-.poppins-thin {
-  font-family: "Poppins", serif;
-  font-weight: 100;
-  font-style: normal;
-  color: #000000;
-}
-
-.poppins-extralight {
-  font-family: "Poppins", serif;
-  font-weight: 200;
-  font-style: normal;
-}
-
-.poppins-light {
-  font-family: "Poppins", serif;
-  font-weight: 300;
-  font-style: normal;
-  color: #000000;
-}
-
-.poppins-regular {
-  font-family: "Poppins", serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 0.875rem;
-  color: #000000;
-}
-
-.poppins-medium {
-  font-family: "Poppins", serif;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 0.875rem;
-}
-
-.poppins-semibold {
+.header-2 {
   font-family: "Poppins", serif;
   font-weight: 600;
-  font-style: normal;
-  font-size: 0.875rem;
+  font-size: 54px;
+  color: #0E0E2C;
 }
 
-.poppins-bold {
-  font-family: "Poppins", serif;
-  font-weight: 700;
-  font-style: normal;
+.body {
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: #0E0E2C;
 }
 
-.poppins-extrabold {
-  font-family: "Poppins", serif;
-  font-weight: 800;
-  font-style: normal;
+.button-text {
+    font-family: "Poppins", serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #ffffff;
 }
 
-.poppins-black {
-  font-family: "Poppins", serif;
-  font-weight: 900;
-  font-style: normal;
+.button-text-light {
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #0E0E2C;
 }
 
-.separator {
-    width: 0.5rem;
+.little-separator {
+    width: 1.5rem;
+}
+
+.medium-separator {
+    width: 3rem;
+}
+
+.big-separator {
+    width: 5rem;
 }
 
 body {

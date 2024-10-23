@@ -1,5 +1,5 @@
 <template>
-  <button :class="['text-center poppins-semibold p-3 rounded', !cta ? 'border' : '', cta ? 'bg-primary' : 'bg-white']" type="button">
+  <button :class="['text-center', cta ? 'button-text' : 'button-text-light', 'p-2.5 rounded', !cta ? 'border' : '', cta ? 'bg-primary' : 'bg-white']" type="button">
     <slot></slot>
   </button>
 </template>

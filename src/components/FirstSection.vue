@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="w-8/12 text-center">
-      <h1 class="poppins-title pb-10">L’outil clé en main <br> pour la rénovation de votre bien !</h1>
+      <h1 class="header-1 pb-10">L’outil clé en main <br> pour la rénovation de votre bien !</h1>
       <h4 class="poppins-light ">Vous souhaitez rénover votre bien, mais vous ne s’avez pas comment vous y prendre ? </h4>
       <h2 class="poppins-subtitle  py-6">BEAVY EST LA SOLUTION !</h2>
       <div class="flex justify-center">
