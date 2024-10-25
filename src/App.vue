@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import Header from './components/Header.vue'
-import FirstSection from "./components/FirstSection.vue";
+import MainLayout from './components/layout/MainLayout.vue'
+import FirstSection from "./components/sections/FirstSection.vue";
 </script>
 
 <template>
-  <Header />
-  <FirstSection />
+  <MainLayout>
+    <FirstSection />
+  </MainLayout>
 </template>
 
 <style scoped>
