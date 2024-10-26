@@ -6,7 +6,10 @@
         <div class="pl-36 pt-36">
           <div class="headline-large-sbold pb-9">Rénover votre <span class="text-primary">passoire thermique</span> n’a jamais été aussi simple.</div>
           <div class="title-medium-medium pb-8">Obtenez des aides pour vos travaux et un accompagnement humain de A à Z</div>
-          <Button :cta="true">Faire une simulation en moins de 10 minutes</Button>
+          <div class="flex items-center gap-2">
+            <Button :cta="true">Faire une simulation en moins de 10 minutes</Button>
+            <Checkbox />
+          </div>
         </div>
         <img  class="w-1/2" src="../assets/illuhero.svg" alt="Tete Logo" />
         
@@ -16,4 +19,5 @@
 </template>
 <script setup lang="ts">
 import Button from "./Button.vue";
+import Checkbox from "./Checkbox.vue";
 </script>
