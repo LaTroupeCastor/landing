@@ -38,7 +38,7 @@
     font-family: Poppins, serif;
     font-size: 48px;
     line-height: 60px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 /*Headline medium*/
@@ -60,7 +60,7 @@
     font-family: Poppins, serif;
     font-size: 40px;
     line-height: 50px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 /*Headline small*/
@@ -82,7 +82,7 @@
     font-family: Poppins, serif;
     font-size: 32px;
     line-height: 42px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 /*-------------------------------- HEADLINE --------------------------------*/
@@ -107,7 +107,7 @@
     font-family: Poppins, serif;
     font-size: 24px;
     line-height: 32px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 /*Title medium*/
@@ -129,7 +129,7 @@
     font-family: Poppins, serif;
     font-size: 20px;
     line-height: 26px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 /*Title small*/
@@ -151,7 +151,7 @@
     font-family: Poppins, serif;
     font-size: 18px;
     line-height: 24px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 /*-------------------------------- TITLE --------------------------------*/
@@ -176,7 +176,7 @@
     font-family: Poppins, serif;
     font-size: 16px;
     line-height: 21px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 /*Body medium*/
@@ -198,7 +198,7 @@
     font-family: Poppins, serif;
     font-size: 14px;
     line-height: 20px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 /*Body small*/
@@ -221,7 +221,7 @@
     font-family: Poppins, serif;
     font-size: 12px;
     line-height: 16px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 /*-------------------------------- BODY --------------------------------*/
@@ -300,7 +300,7 @@ body {
     @font-face {
         font-family: 'Poppins';
         font-style: normal;
-        font-weight: 700;
+        font-weight: 600;
         src: url('../public/fonts/Poppins/Poppins-Bold.ttf') format('ttf');
     }
     @font-face {
