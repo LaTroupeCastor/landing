@@ -1,10 +1,10 @@
 <template>
   <div class="grid justify-between px-36">
     <div class="title-small-regular text-primary">Un accompagnement humain, des résultats concrets</div>
-    <div class="headline-medium-sbold w-[90%]">Beavy, votre partenaire pour une rénovation sereine.</div>
+    <div class="headline-medium-sbold w-[80%]">Beavy, votre partenaire pour une rénovation sereine.</div>
     <div class="flex pl-10 pt-16 gap-[20%] items-center">
-      <div class="relative w-[40%]">
-        <img src="../assets/circle_section_2.svg" alt="Circle" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] -z-10" />
+      <img src="../assets/circle_section_2.svg" alt="Circle" class="absolute transform -translate-x-1/4" />
+      <div class="w-[40%]">
         <img src="../assets/crane.png" alt="Crane" class="relative w-full" />
       </div>
       <div class="flex-col w-[30%] body-large-regular">
