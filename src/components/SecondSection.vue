@@ -4,8 +4,8 @@
     <div class="headline-medium-sbold w-[90%]">Beavy, votre partenaire pour une rénovation sereine.</div>
     <div class="flex pl-10 pt-16 gap-[20%] items-center">
       <div class="relative w-[40%]">
-        <img src="../assets/circle_section_2.svg" alt="Circle" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] -z-10" />
-        <img src="../assets/crane.png" alt="Crane" class="w-full h-[95%]" />
+        <img src="../assets/circle_section_2.svg" alt="Circle" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] -z-10" />
+        <img src="../assets/crane.png" alt="Crane" class="relative w-full" />
       </div>
       <div class="flex-col w-[30%] body-large-regular">
         <div class="pb-4">“Chez Beavy, nous faisons plus que simplement vous mettre en relation avec des artisans qualifiés.</div>
