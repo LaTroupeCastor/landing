@@ -1,8 +1,8 @@
 <template>
-  <section class="h-screen">
-    <div class="grid justify-between h-[100%-100px]">
-      <img src="../assets/circle_top_left.svg" class="col-start-1 row-start-1" alt="Tete Logo" />
-      <div class="flex col-start-1 row-start-1">
+  <section class="h-5/6">
+    <div class="grid justify-between bg-green-600 h-5/6 ">
+      <img src="../assets/circle_top_left.svg" class="bg-blue-600 col-start-1 row-start-1 h-4/6" alt="Tete Logo" />
+      <div class="flex col-start-1 row-start-1 bg-red-500 h-1/2">
         <div class="pl-36 pt-36">
           <div class="headline-large-sbold pb-9">Rénover votre <span class="text-primary">passoire thermique</span> n’a jamais été aussi simple.</div>
           <div class="title-medium-medium pb-8">Obtenez des aides pour vos travaux et un accompagnement humain de A à Z</div>
