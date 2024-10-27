@@ -1,5 +1,5 @@
 <template>
-  <section class="h-screen">
+  <section class="h-[calc(100vh-80px)]">
     <div class="grid justify-between bg-green-600 h-full">
       <img src="../assets/circle_top_left.svg" class="bg-blue-600 col-start-1 row-start-1 h-4/6" alt="Tete Logo" />
       <div class="flex col-start-1 row-start-1 bg-red-500 h-1/2">
