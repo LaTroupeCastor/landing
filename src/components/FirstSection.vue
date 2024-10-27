@@ -1,6 +1,6 @@
 <template>
-  <section>
-    <div class="grid justify-between h-[calc(100% - 100px)]">
+  <section class="h-screen">
+    <div class="grid justify-between h-[100%-100px]">
       <img src="../assets/circle_top_left.svg" class="col-start-1 row-start-1" alt="Tete Logo" />
       <div class="flex col-start-1 row-start-1">
         <div class="pl-36 pt-36">
