@@ -2,7 +2,7 @@
   <div class="grid justify-between px-36">
     <div class="title-small-regular text-primary">Un accompagnement humain, des résultats concrets</div>
     <div class="headline-medium-sbold w-[90%]">Beavy, votre partenaire pour une rénovation sereine.</div>
-    <div class="flex pl-10 pt-16 gap-[200px]">
+    <div class="flex pl-10 pt-16 gap-[20%]">
       <img src="../assets/crane.png" alt="Crane" class="w-[40%] h-[95%]" />
       <div class="flex-col w-[30%]">
         <div class="pb-4">“Chez Beavy, nous faisons plus que simplement vous mettre en relation avec des artisans qualifiés.</div>
