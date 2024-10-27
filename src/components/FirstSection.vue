@@ -1,6 +1,6 @@
 <template>
-  <section class="h-5/6">
-    <div class="grid justify-between bg-green-600 h-5/6 ">
+  <section class="h-screen">
+    <div class="grid justify-between bg-green-600 h-full">
       <img src="../assets/circle_top_left.svg" class="bg-blue-600 col-start-1 row-start-1 h-4/6" alt="Tete Logo" />
       <div class="flex col-start-1 row-start-1 bg-red-500 h-1/2">
         <div class="pl-36 pt-36">
