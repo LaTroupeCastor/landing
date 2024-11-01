@@ -1,7 +1,6 @@
 <template>
   <div class="grid justify-between px-36">
-    <div class="title-small-regular text-primary">Un accompagnement humain, des résultats concrets</div>
-    <div class="headline-medium-sbold w-[80%]">Beavy, votre partenaire pour une rénovation sereine.</div>
+    <SectionHeader />
     <div class="flex pl-10 pt-16 gap-[20%] items-center">
       <img src="../../assets/circle_section_2.svg" alt="Circle" class="absolute transform -translate-x-1/4" />
       <div class="w-[40%]">
@@ -17,4 +16,5 @@
   </div>
 </template>
 <script setup lang="ts">
+import SectionHeader from './SectionHeader.vue'
 </script>
