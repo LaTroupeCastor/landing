@@ -12,8 +12,7 @@
             <Checkbox :text="'Sans engagement'"/>
           </div>
         </div>
-        <img class="w-1/2" src="../../assets/illuhero.svg" alt="Illustration rénovation énergétique" loading="lazy" />
-      </div>
+        <img class="w-full" src="../../assets/illuhero.svg" alt="Illustration rénovation énergétique" loading="lazy" />
     </div>
   </section>
 </template>
