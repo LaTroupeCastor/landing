@@ -8,10 +8,15 @@ defineProps<Props>();
 </script>
 
 <template>
-  <div class="flex items-start gap-8">
-    <div class="bg-secondary w-32 h-32 flex items-center justify-center">
-      <span class="text-7xl font-semibold">{{ number }}</span>
+  <div class="flex items-center">
+    <div class="bg-primary300 w-40 h-36 flex
+ items-center justify-center">
+      <span class="headline-large-sbold text-7x
+ font-semibold text-white">{{ number }}</span>
     </div>
-    <p class="text-xl mt-4">{{ text }}</p>
+    <p class="bg-primary200 pl-16 pr-12
+ title-medium-medium w-full h-full flex
+ items-center justify-center py-12">{{ text }}
+    </p>
   </div>
 </template>
