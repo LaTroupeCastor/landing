@@ -15,8 +15,8 @@ defineProps<Props>();
  font-semibold text-white">{{ number }}</span>
     </div>
     <p class="bg-primary200 pl-16 pr-12
- title-medium-medium w-full h-full flex
- items-center justify-center py-12">{{ text }}
+ title-medium-medium flex
+ items-center justify-center py-12  w-full h-36">{{ text }}
     </p>
   </div>
 </template>
