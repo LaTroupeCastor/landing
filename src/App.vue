@@ -7,7 +7,7 @@ import ThirdSection from "./components/sections/ThirdSection.vue";
 
 <template>
   <MainLayout>
-    <div class="flex flex-col gap-24">
+    <div class="flex flex-col gap-52">
       <FirstSection />
       <SecondSection />
       <ThirdSection />

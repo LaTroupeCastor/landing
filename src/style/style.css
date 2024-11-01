@@ -18,6 +18,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.section-style {
+    display: grid;
+    padding-left: 9rem; /* 144px */
+    padding-right: 9rem; /* 144px */
+    justify-content: space-between;
+}
+
 /*-------------------------------- HEADLINE --------------------------------*/
 /*Headline large*/
 .headline-large-regular {
