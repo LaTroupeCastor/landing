@@ -1,6 +1,9 @@
 <template>
   <div class="grid justify-between px-36">
-    <SectionHeader />
+    <SectionHeader 
+      title="Beavy, votre partenaire pour une rénovation sereine."
+      subtitle="Un accompagnement humain, des résultats concrets"
+    />
     <div class="flex pl-10 pt-16 gap-[20%] items-center">
       <img src="../../assets/circle_section_2.svg" alt="Circle" class="absolute transform -translate-x-1/4" />
       <div class="w-[40%]">
