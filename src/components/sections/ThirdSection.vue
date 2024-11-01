@@ -7,7 +7,7 @@
     <div class="relative">
       <img src="../../assets/section3_left.svg" alt="Illustration gauche" class="absolute -left-36 top-[30%] -translate-y-1/2"/>
       <div class="max-w-5xl mx-auto mt-16">
-        <div class="flex flex-col space-y-16">
+        <div class="flex flex-col space-y-10">
           <StepItem
               :number="1"
               :text="'Faites une simulation rapide pour savoir si vous êtes éligible aux aides.'"
