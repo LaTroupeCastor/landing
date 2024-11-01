@@ -6,7 +6,7 @@
     />
     <div class="grid grid-cols-3 mt-16 gap-8">
       <div class="flex items-center">
-        <img src="@/assets/section3_left.svg" alt="Illustration gauche" class="w-full h-auto"/>
+        <img src="../../assets/section3_left.svg" alt="Illustration gauche" class="w-full h-auto"/>
       </div>
       <div class="flex flex-col space-y-8">
         <StepItem
@@ -23,7 +23,7 @@
         />
       </div>
       <div class="flex items-center">
-        <img src="@/assets/section3_right.svg" alt="Illustration droite" class="w-full h-auto"/>
+        <img src="../../assets/section3_right.svg" alt="Illustration droite" class="w-full h-auto"/>
       </div>
     </div>
   </div>
