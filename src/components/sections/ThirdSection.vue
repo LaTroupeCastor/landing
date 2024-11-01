@@ -1,8 +1,8 @@
 <template>
   <div class="section-style">
     <SectionHeader
-        :title="'Votre projet de rénovation en 3 étapes simple'"
-        :subtitle="'Comment ça marche ?'"
+        :title="'Comment ça marche ?'"
+        :subtitle="'Votre projet de rénovation en 3 étapes simple'"
     />
   </div>
 </template>
