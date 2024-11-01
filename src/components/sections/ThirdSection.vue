@@ -8,4 +8,5 @@
 </template>
 <script setup lang="ts">
 import SectionHeader from "./SectionHeader.vue";
+import StepItem from "../StepItem.vue";
 </script>
