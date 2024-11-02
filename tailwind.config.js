@@ -11,7 +11,9 @@ export default {
         background1: "#F6FAFE",
         primary: "#F4BC3E",
         primary200: "#FCEECF",
-        primary300: "#FAE1A8"
+        primary300: "#FAE1A8",
+        primary400: "#FDF5E2",
+        border: "#EDEDED"
       }
     },
   },
