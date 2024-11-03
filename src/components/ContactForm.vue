@@ -1,8 +1,7 @@
 <template>
-  <div alt="form" class="flex-col flex">
+  <div class="flex-col flex max-w-[600px]">
     <SectionHeader :title="'Parlons ensemble de votre projet'" :subtitle="'Vous avez des questions ?'"/>
-    <div alt="divider" class="bg-divider h-[1.5px] my
- mb-4"/>
+    <div class="bg-divider h-[1.5px] my-6"/>
     <p class="body-large-regular text-black40">Vous
       avez des questions sur les aides disponibles ou
       souhaitez en savoir
@@ -23,7 +22,7 @@
               id="firstname"
               v-model="formData.firstname"
               placeholder="Prénom"
-              class="p-3 bg-[#F4F4F4] rounded-lg"
+              class="p-3 bg-[#F4F4F4] rounded-lg h-12"
           >
         </div>
 
@@ -93,10 +92,13 @@
       <!-- Submit Button -->
       <button
           type="submit"
-          class="bg-primary text-white px-8 py-3
- rounded-lg flex items-center gap-2"
+          class="bg-[#FBF6EE] text-black px-12 py-4 rounded-lg flex items-center gap-2 w-fit"
       >
         Envoyer
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rotate-45">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
       </button>
     </form>
   </div>
