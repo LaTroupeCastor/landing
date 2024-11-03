@@ -13,7 +13,9 @@ export default {
         primary200: "#FCEECF",
         primary300: "#FAE1A8",
         primary400: "#FDF5E2",
-        border: "#EDEDED"
+        border: "#EDEDED",
+        backgroundGrey: "#F3F5F7",
+        divider: "#F3F3F2"
       }
     },
   },
