@@ -8,4 +8,5 @@
   </div>
 </template>
 <script setup lang="ts">
+import SectionHeader from "./sections/SectionHeader.vue";
 </script>
