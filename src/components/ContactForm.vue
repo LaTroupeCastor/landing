@@ -10,8 +10,7 @@
       vous répondrons
       sous 48 heures.</p>
 
-    <form @submit.prevent="handleSubmit" class="mt-8
- space-y-6">
+    <form class="mt-8 space-y-6" @submit.prevent="handleSubmit">
       <div class="grid grid-cols-2 gap-4">
         <!-- Prénom -->
         <div class="flex flex-col">
@@ -103,6 +102,24 @@
     </form>
   </div>
 </template>
+
 <script setup lang="ts">
-import SectionHeader from "./sections/SectionHeader.vue";
+
+import Checkbox from "./Checkbox.vue";
+import { ref } from 'vue';
+import SectionHeader from "./sections/SectionHeader.vue";  // Add this line
+
+const formData = ref({
+  firstname: '',
+  lastname: '',
+  email: '',
+  phone: '',
+  message: '',
+  acceptConditions: false
+});
+
+const handleSubmit = () => {
+  console.log('Form submitted:', formData.value);
+  // Add your form submission logic here
+};
 </script>
