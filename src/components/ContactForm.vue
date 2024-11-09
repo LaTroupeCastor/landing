@@ -23,6 +23,7 @@
               placeholder="Prénom"
               class="p-3 bg-[#F4F4F4] rounded-lg h-12"
           >
+          <span v-if="errors.firstname" class="text-red-500 text-sm mt-1">{{ errors.firstname }}</span>
         </div>
 
         <!-- Nom -->
@@ -36,6 +37,7 @@
               placeholder="Nom"
               class="p-3 bg-[#F4F4F4] rounded-lg"
           >
+          <span v-if="errors.lastname" class="text-red-500 text-sm mt-1">{{ errors.lastname }}</span>
         </div>
       </div>
 
@@ -50,6 +52,7 @@
                 placeholder="Email"
                 class="p-3 bg-[#F4F4F4] rounded-lg"
             >
+            <span v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</span>
         </div>
 
         <!-- Téléphone -->
@@ -63,6 +66,7 @@
               placeholder="Téléphone"
               class="p-3 bg-[#F4F4F4] rounded-lg"
           >
+          <span v-if="errors.phone" class="text-red-500 text-sm mt-1">{{ errors.phone }}</span>
         </div>
       </div>
 
@@ -78,6 +82,7 @@
             class="p-3 bg-[#F4F4F4] rounded-lg
  resize-none"
         ></textarea>
+        <span v-if="errors.message" class="text-red-500 text-sm mt-1">{{ errors.message }}</span>
       </div>
 
       <!-- Checkbox -->
@@ -86,6 +91,7 @@
         />
         <label class="text-sm text-black40">J'accepte
           les condititions d'utilisations</label>
+        <span v-if="errors.acceptConditions" class="text-red-500 text-sm mt-1">{{ errors.acceptConditions }}</span>
       </div>
 
       <!-- Submit Button -->
@@ -118,7 +124,77 @@ const formData = ref({
   acceptConditions: false
 });
 
+const errors = ref({
+  firstname: '',
+  lastname: '',
+  email: '',
+  phone: '',
+  message: '',
+  acceptConditions: ''
+});
+
+const validateEmail = (email: string) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
+
+const validatePhone = (phone: string) => {
+  return /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/.test(phone);
+};
+
+const validateForm = () => {
+  let isValid = true;
+  errors.value = {
+    firstname: '',
+    lastname: '',
+    email: '',
+    phone: '',
+    message: '',
+    acceptConditions: ''
+  };
+
+  if (!formData.value.firstname.trim()) {
+    errors.value.firstname = 'Le prénom est requis';
+    isValid = false;
+  }
+
+  if (!formData.value.lastname.trim()) {
+    errors.value.lastname = 'Le nom est requis';
+    isValid = false;
+  }
+
+  if (!formData.value.email.trim()) {
+    errors.value.email = 'L\'email est requis';
+    isValid = false;
+  } else if (!validateEmail(formData.value.email)) {
+    errors.value.email = 'Format d\'email invalide';
+    isValid = false;
+  }
+
+  if (!formData.value.phone.trim()) {
+    errors.value.phone = 'Le téléphone est requis';
+    isValid = false;
+  } else if (!validatePhone(formData.value.phone)) {
+    errors.value.phone = 'Format de téléphone invalide';
+    isValid = false;
+  }
+
+  if (!formData.value.message.trim()) {
+    errors.value.message = 'Le message est requis';
+    isValid = false;
+  }
+
+  if (!formData.value.acceptConditions) {
+    errors.value.acceptConditions = 'Vous devez accepter les conditions';
+    isValid = false;
+  }
+
+  return isValid;
+};
+
 const handleSubmit = async () => {
+  if (!validateForm()) {
+    return;
+  }
   try {
     // Appel à votre fonction serverless de test
     const { res, error } = await nhost.functions.call('test');
