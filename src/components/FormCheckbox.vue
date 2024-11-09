@@ -36,9 +36,15 @@ input[type="checkbox"] {
   border-radius: 4px;
 }
 
-input[type="checkbox"]:checked {
-  background-color: #F1AB0E;
-  position: relative;
+input[type="checkbox"] {
+  appearance: none;
+  background-color: #F4F4F4;
+  border: 2px solid #F1AB0E;
+  border-radius: 4px;
+}
+
+input[type="checkbox"].border-red-500 {
+  border-color: rgb(239 68 68) !important;
 }
 
 input[type="checkbox"]:checked::before {

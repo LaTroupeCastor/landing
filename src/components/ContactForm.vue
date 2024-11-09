@@ -37,7 +37,6 @@
               v-model="formData.lastname"
               placeholder="Nom"
               class="p-3 bg-[#F4F4F4] rounded-lg"
-              :class="{ 'border-2 border-red-500': errors.phone }"
               :class="{ 'border-2 border-red-500': errors.lastname }"
           >
           <span v-if="errors.lastname" class="text-red-500 text-sm mt-1">{{ errors.lastname }}</span>
@@ -68,6 +67,7 @@
               id="phone"
               v-model="formData.phone"
               placeholder="Téléphone"
+              :class="{ 'border-2 border-red-500': errors.phone }"
               class="p-3 bg-[#F4F4F4] rounded-lg"
           >
           <span v-if="errors.phone" class="text-red-500 text-sm mt-1">{{ errors.phone }}</span>
@@ -90,14 +90,14 @@
       </div>
 
       <!-- Checkbox -->
-      <div class="flex items-center gap-2">
+      <div class="flex flex-col gap-1">
         <FormCheckbox
-          v-model="formData.acceptConditions"
-          :hasError="!!errors.acceptConditions"
+            v-model="formData.acceptConditions"
+            :hasError="!!errors.acceptConditions"
         >
           <span class="text-sm text-black40">J'accepte les conditions d'utilisations</span>
         </FormCheckbox>
-        <span v-if="errors.acceptConditions" class="text-red-500 text-sm mt-1">{{ errors.acceptConditions }}</span>
+        <span v-if="errors.acceptConditions" class="text-red-500 text-sm">{{ errors.acceptConditions }}</span>
       </div>
 
       <!-- Submit Button -->
@@ -118,9 +118,10 @@
 <script setup lang="ts">
 
 import FormCheckbox from "./FormCheckbox.vue";
-import { ref } from 'vue';
+import {ref, watch} from 'vue';
 import SectionHeader from "./sections/SectionHeader.vue";  // Add this line
 import { nhost } from '../nhost';
+
 const formData = ref({
   firstname: '',
   lastname: '',
@@ -137,6 +138,43 @@ const errors = ref({
   phone: '',
   message: '',
   acceptConditions: ''
+});
+
+// Ajout des watchers pour validation en temps réel
+watch(() => formData.value.firstname, (newValue) => {
+  if (newValue.trim()) {
+    errors.value.firstname = '';
+  }
+});
+
+watch(() => formData.value.lastname, (newValue) => {
+  if (newValue.trim()) {
+    errors.value.lastname = '';
+  }
+});
+
+watch(() => formData.value.email, (newValue) => {
+  if (validateEmail(newValue)) {
+    errors.value.email = '';
+  }
+});
+
+watch(() => formData.value.phone, (newValue) => {
+  if (validatePhone(newValue)) {
+    errors.value.phone = '';
+  }
+});
+
+watch(() => formData.value.message, (newValue) => {
+  if (newValue.trim()) {
+    errors.value.message = '';
+  }
+});
+
+watch(() => formData.value.acceptConditions, (newValue) => {
+  if (newValue) {
+    errors.value.acceptConditions = '';
+  }
 });
 
 const validateEmail = (email: string) => {
@@ -202,21 +240,37 @@ const handleSubmit = async () => {
     return;
   }
   try {
-    // Appel à votre fonction serverless de test
-    const { res, error } = await nhost.functions.call('test');
+    const { res, error } = await nhost.functions.call('mail', {
+      body: {
+        firstname: formData.value.firstname,
+        lastname: formData.value.lastname,
+        email: formData.value.email,
+        phone: formData.value.phone,
+        message: formData.value.message
+      }
+    });
 
     if (error) {
       console.error('Erreur:', error);
-      alert('Erreur lors de l\'appel à la fonction');
+      alert('Erreur lors de l\'envoi de l\'email');
       return;
     }
 
-    console.log('Réponse de la fonction:', res);
-    alert('Test réussi! Vérifiez la console pour voir la réponse');
+    console.log('Email envoyé:', res);
+    alert('Votre message a été envoyé avec succès!');
+    // Réinitialiser le formulaire après succès
+    formData.value = {
+      firstname: '',
+      lastname: '',
+      email: '',
+      phone: '',
+      message: '',
+      acceptConditions: false
+    };
 
   } catch (error) {
     console.error('Erreur:', error);
-    alert('Une erreur est survenue');
+    alert('Une erreur est survenue lors de l\'envoi du message');
   }
 };
 
