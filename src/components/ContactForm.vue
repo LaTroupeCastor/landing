@@ -87,10 +87,12 @@
 
       <!-- Checkbox -->
       <div class="flex items-center gap-2">
-        <Checkbox v-model="formData.acceptConditions"
-        />
-        <label class="text-sm text-black40">J'accepte
-          les condititions d'utilisations</label>
+        <FormCheckbox
+          v-model="formData.acceptConditions"
+          :hasError="!!errors.acceptConditions"
+        >
+          <span class="text-sm text-black40">J'accepte les conditions d'utilisations</span>
+        </FormCheckbox>
         <span v-if="errors.acceptConditions" class="text-red-500 text-sm mt-1">{{ errors.acceptConditions }}</span>
       </div>
 
@@ -111,7 +113,7 @@
 
 <script setup lang="ts">
 
-import Checkbox from "./Checkbox.vue";
+import FormCheckbox from "./FormCheckbox.vue";
 import { ref } from 'vue';
 import SectionHeader from "./sections/SectionHeader.vue";  // Add this line
 import { nhost } from '../nhost';
