@@ -22,6 +22,7 @@
               v-model="formData.firstname"
               placeholder="Prénom"
               class="p-3 bg-[#F4F4F4] rounded-lg h-12"
+              :class="{ 'border-2 border-red-500': errors.firstname }"
           >
           <span v-if="errors.firstname" class="text-red-500 text-sm mt-1">{{ errors.firstname }}</span>
         </div>
@@ -36,6 +37,8 @@
               v-model="formData.lastname"
               placeholder="Nom"
               class="p-3 bg-[#F4F4F4] rounded-lg"
+              :class="{ 'border-2 border-red-500': errors.phone }"
+              :class="{ 'border-2 border-red-500': errors.lastname }"
           >
           <span v-if="errors.lastname" class="text-red-500 text-sm mt-1">{{ errors.lastname }}</span>
         </div>
@@ -51,6 +54,7 @@
                 v-model="formData.email"
                 placeholder="Email"
                 class="p-3 bg-[#F4F4F4] rounded-lg"
+                :class="{ 'border-2 border-red-500': errors.email }"
             >
             <span v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</span>
         </div>
@@ -79,8 +83,8 @@
             v-model="formData.message"
             placeholder="Message"
             rows="4"
-            class="p-3 bg-[#F4F4F4] rounded-lg
- resize-none"
+            class="p-3 bg-[#F4F4F4] rounded-lg resize-none"
+            :class="{ 'border-2 border-red-500': errors.message }"
         ></textarea>
         <span v-if="errors.message" class="text-red-500 text-sm mt-1">{{ errors.message }}</span>
       </div>
