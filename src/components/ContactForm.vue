@@ -108,7 +108,7 @@
 import Checkbox from "./Checkbox.vue";
 import { ref } from 'vue';
 import SectionHeader from "./sections/SectionHeader.vue";  // Add this line
-
+import { nhost } from '../nhost';
 const formData = ref({
   firstname: '',
   lastname: '',
@@ -118,8 +118,24 @@ const formData = ref({
   acceptConditions: false
 });
 
-const handleSubmit = () => {
-  console.log('Form submitted:', formData.value);
-  // Add your form submission logic here
+const handleSubmit = async () => {
+  try {
+    // Appel à votre fonction serverless de test
+    const { res, error } = await nhost.functions.call('test');
+
+    if (error) {
+      console.error('Erreur:', error);
+      alert('Erreur lors de l\'appel à la fonction');
+      return;
+    }
+
+    console.log('Réponse de la fonction:', res);
+    alert('Test réussi! Vérifiez la console pour voir la réponse');
+
+  } catch (error) {
+    console.error('Erreur:', error);
+    alert('Une erreur est survenue');
+  }
 };
+
 </script>
