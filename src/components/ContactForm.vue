@@ -120,7 +120,7 @@
 import FormCheckbox from "./FormCheckbox.vue";
 import {ref, watch} from 'vue';
 import SectionHeader from "./sections/SectionHeader.vue";  // Add this line
-import { nhost } from '../nhost';
+import { supabase } from "../supabase_client.ts";
 
 const formData = ref({
   firstname: '',
@@ -240,14 +240,19 @@ const handleSubmit = async () => {
     return;
   }
   try {
-    const { res, error } = await nhost.functions.call('mail', {
-      body: {
-        firstname: formData.value.firstname,
-        lastname: formData.value.lastname,
-        email: formData.value.email,
-        phone: formData.value.phone,
+    const body = {
+      emailFrom: formData.value.email,
+      message: formData.value.message
+    };
+
+    console.log('body', body);
+    console.log(JSON.stringify(body));
+    const { data, error } = await supabase.functions.invoke('send_mail', {
+      body: JSON.stringify({  // Ajout de JSON.stringify ici
+        emailFrom: formData.value.email,
         message: formData.value.message
-      }
+      }),
+      method: 'POST',
     });
 
     if (error) {
@@ -256,7 +261,7 @@ const handleSubmit = async () => {
       return;
     }
 
-    console.log('Email envoyé:', res);
+    console.log('Email envoyé:', data);
     alert('Votre message a été envoyé avec succès!');
     // Réinitialiser le formulaire après succès
     formData.value = {
