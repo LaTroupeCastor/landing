@@ -2,6 +2,7 @@ import { createClient } from '@supabase/supabase-js'
 
 // Afficher toutes les variables d'environnement disponibles
 console.log('All env vars:', import.meta.env)
+console.log(process.env)
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
