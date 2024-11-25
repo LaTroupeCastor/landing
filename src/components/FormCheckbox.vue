@@ -3,7 +3,7 @@
     <input
       type="checkbox"
       :checked="modelValue"
-      @change="$emit('update:modelValue', $event.target.checked)"
+      @change="$emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
       class="w-5 h-5 rounded cursor-pointer accent-[#F1AB0E]"
       :class="{ 'border-2 border-red-500': hasError }"
     />
