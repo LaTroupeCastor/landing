@@ -15,7 +15,8 @@ export default {
         primary400: "#FDF5E2",
         border: "#EDEDED",
         backgroundGrey: "#F3F5F7",
-        divider: "#F3F3F2"
+        divider: "#F3F3F2",
+        black40:"#A19F99"
       }
     },
   },
