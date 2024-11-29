@@ -80,7 +80,7 @@
       </div>
 
       <!-- Submit Button -->
-      <Button type="submit" :cta="true" trailing-icon="./src/assets/send_arrow.svg" :loading="loading" :disabled="isButtonDisabled">Envoyer</Button>
+      <Button type="submit" :cta="true" trailing-icon="../src/assets/send_arrow.svg" :loading="loading" :disabled="isButtonDisabled">Envoyer</Button>
     </form>
   </div>
 </template>
