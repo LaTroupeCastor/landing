@@ -3,7 +3,7 @@
     <div class="grid grid-cols-2 h-full items-center pl-36 pt-20" role="main">
       <img src="../../assets/circle_top_left.svg" class="absolute left-0 top-0 h-4/6" alt="Cercle décoratif" />
       <div class="z-10">
-          <div class="headline-large-sbold pb-9">Rénover votre <span class="text-primary">passoire thermique</span> n’a jamais été aussi simple.</div>
+          <div class="headline-large-sbold pb-9">Rénover votre <span class="text-primary-100">passoire thermique</span> n’a jamais été aussi simple.</div>
           <div class="title-medium-medium pb-8">Obtenez des aides pour vos travaux et un accompagnement humain de A à Z</div>
           <Button :cta="true">Faire une simulation en moins de 10 minutes</Button>
           <div class="flex">

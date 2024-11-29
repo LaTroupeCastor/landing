@@ -1,8 +1,8 @@
 <template>
   <div class="flex-col flex max-w-[600px]">
     <SectionHeader :title="'Parlons ensemble de votre projet'" :subtitle="'Vous avez des questions ?'"/>
-    <div class="bg-divider h-[1.5px] my-6"/>
-    <p class="body-large-regular text-black40">Vous
+    <div class="bg-[#EBEBEB] h-[1.5px] my-6"/>
+    <p class="body-large-regular text-[#A19F99]">Vous
       avez des questions sur les aides disponibles ou
       souhaitez en savoir
       plus sur notre outil et notre accompagnement
@@ -13,77 +13,56 @@
     <form class="mt-8 space-y-6" @submit.prevent="handleSubmit">
       <div class="grid grid-cols-2 gap-4">
         <!-- Prénom -->
-        <div class="flex flex-col">
-          <label for="firstname"
-                 class="mb-2">Prénom</label>
-          <input
-              type="text"
-              id="firstname"
-              v-model="formData.firstname"
-              placeholder="Prénom"
-              class="p-3 bg-[#F4F4F4] rounded-lg h-12"
-              :class="{ 'border-2 border-red-500': errors.firstname }"
-          >
-          <span v-if="errors.firstname" class="text-red-500 text-sm mt-1">{{ errors.firstname }}</span>
-        </div>
+        <FormField
+            id="firstname"
+            label="Prénom"
+            v-model="formData.firstname"
+            placeholder="Prénom"
+            :error="errors.firstname"
+        />
 
         <!-- Nom -->
-        <div class="flex flex-col">
-          <label for="lastname"
-                 class="mb-2">Nom</label>
-          <input
-              type="text"
-              id="lastname"
-              v-model="formData.lastname"
-              placeholder="Nom"
-              class="p-3 bg-[#F4F4F4] rounded-lg"
-              :class="{ 'border-2 border-red-500': errors.lastname }"
-          >
-          <span v-if="errors.lastname" class="text-red-500 text-sm mt-1">{{ errors.lastname }}</span>
-        </div>
+        <FormField
+            id="lastname"
+            label="Nom"
+            v-model="formData.lastname"
+            placeholder="Nom"
+            :error="errors.lastname"
+        />
       </div>
 
       <div class="grid grid-cols-2 gap-4">
         <!-- Email -->
-        <div class="flex flex-col">
-          <label for="email" class="mb-2">Email</label>
-            <input
-                type="email"
-                id="email"
-                v-model="formData.email"
-                placeholder="Email"
-                class="p-3 bg-[#F4F4F4] rounded-lg"
-                :class="{ 'border-2 border-red-500': errors.email }"
-            >
-            <span v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</span>
-        </div>
+        <FormField
+            id="email"
+            label="Email"
+            type="email"
+            v-model="formData.email"
+            placeholder="Email"
+            :error="errors.email"
+        />
 
         <!-- Téléphone -->
-        <div class="flex flex-col">
-          <label for="phone"
-                 class="mb-2">Téléphone</label>
-          <input
-              type="tel"
-              id="phone"
-              v-model="formData.phone"
-              placeholder="Téléphone"
-              :class="{ 'border-2 border-red-500': errors.phone }"
-              class="p-3 bg-[#F4F4F4] rounded-lg"
-          >
-          <span v-if="errors.phone" class="text-red-500 text-sm mt-1">{{ errors.phone }}</span>
-        </div>
+        <FormField
+            id="phone"
+            label="Téléphone"
+            type="tel"
+            v-model="formData.phone"
+            placeholder="Téléphone"
+            :error="errors.phone"
+        />
       </div>
 
       <!-- Message -->
       <div class="flex flex-col">
         <label for="message"
-               class="mb-2">Message</label>
+               class="mb-2 title-small-medium">Message</label>
         <textarea
             id="message"
             v-model="formData.message"
             placeholder="Message"
             rows="4"
-            class="p-3 bg-[#F4F4F4] rounded-lg resize-none"
+            class="p-3 bg-[#F4F4F4] rounded-lg resize-none body-small-regular"
             :class="{ 'border-2 border-red-500': errors.message }"
         ></textarea>
         <span v-if="errors.message" class="text-red-500 text-sm mt-1">{{ errors.message }}</span>
@@ -95,22 +74,13 @@
             v-model="formData.acceptConditions"
             :hasError="!!errors.acceptConditions"
         >
-          <span class="text-sm text-black40">J'accepte les conditions d'utilisations</span>
+          <span class="body-small-regular text-[#A19F99]">J'accepte les conditions d'utilisations</span>
         </FormCheckbox>
         <span v-if="errors.acceptConditions" class="text-red-500 text-sm">{{ errors.acceptConditions }}</span>
       </div>
 
       <!-- Submit Button -->
-      <button
-          type="submit"
-          class="bg-[#FBF6EE] text-black px-12 py-4 rounded-lg flex items-center gap-2 w-fit"
-      >
-        Envoyer
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rotate-45">
-          <line x1="22" y1="2" x2="11" y2="13"></line>
-          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-        </svg>
-      </button>
+      <Button type="submit" :cta="true" trailing-icon="./src/assets/send_arrow.svg" :loading="loading" :disabled="isButtonDisabled">Envoyer</Button>
     </form>
   </div>
 </template>
@@ -118,10 +88,15 @@
 <script setup lang="ts">
 
 import FormCheckbox from "./FormCheckbox.vue";
-import {ref, watch} from 'vue';
-import SectionHeader from "./sections/SectionHeader.vue";  // Add this line
-import { supabase } from "../supabase_client.ts";
+import {computed, ref, watch} from 'vue';
+import SectionHeader from "./sections/SectionHeader.vue"; // Add this line
+import {supabase} from "../supabase_client.ts";
+import {ToastType, useToastStore} from "../store/toastStore.ts";
+import Button from "./Button.vue";
+import FormField from "./FormField.vue";
 
+const toastStore = useToastStore();
+const loading = ref(false);
 const formData = ref({
   firstname: '',
   lastname: '',
@@ -138,6 +113,24 @@ const errors = ref({
   phone: '',
   message: '',
   acceptConditions: ''
+});
+
+const isButtonDisabled = computed(() => {
+  const {
+    firstname,
+    lastname,
+    email,
+    phone,
+    message,
+    acceptConditions
+  } = formData.value;
+
+  return !firstname.trim() ||
+      !lastname.trim() ||
+      !email.trim() ||
+      !phone.trim() ||
+      !message.trim() ||
+      !acceptConditions;
 });
 
 // Ajout des watchers pour validation en temps réel
@@ -239,30 +232,25 @@ const handleSubmit = async () => {
   if (!validateForm()) {
     return;
   }
-  try {
-    const body = {
-      emailFrom: formData.value.email,
-      message: formData.value.message
-    };
 
-    console.log('body', body);
-    console.log(JSON.stringify(body));
-    const { data, error } = await supabase.functions.invoke('send_mail', {
-      body: JSON.stringify({  // Ajout de JSON.stringify ici
+  loading.value = true;
+  try {
+    const { error } = await supabase.functions.invoke('send_mail', {
+      body: JSON.stringify({
         emailFrom: formData.value.email,
-        message: formData.value.message
+        message: formData.value.message,
+        name: formData.value.firstname,
+        subname: formData.value.lastname,
+        phone: formData.value.phone
       }),
       method: 'POST',
     });
 
     if (error) {
-      console.error('Erreur:', error);
-      alert('Erreur lors de l\'envoi de l\'email');
+      toastStore.addToast('Erreur lors de l\'envoi de l\'email', ToastType.ERROR);
       return;
     }
 
-    console.log('Email envoyé:', data);
-    alert('Votre message a été envoyé avec succès!');
     // Réinitialiser le formulaire après succès
     formData.value = {
       firstname: '',
@@ -273,9 +261,11 @@ const handleSubmit = async () => {
       acceptConditions: false
     };
 
+    toastStore.addToast('Message envoyé avec succès', ToastType.SUCCESS);
   } catch (error) {
-    console.error('Erreur:', error);
-    alert('Une erreur est survenue lors de l\'envoi du message');
+    toastStore.addToast('Une erreur est survenue lors de l\'envoi du message', ToastType.ERROR);
+  } finally {
+    loading.value = false;
   }
 };
 

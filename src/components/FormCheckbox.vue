@@ -1,15 +1,15 @@
 <template>
   <div class="flex items-center">
     <input
-      type="checkbox"
-      :checked="modelValue"
-      @change="$emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
-      class="w-5 h-5 rounded cursor-pointer accent-[#F1AB0E]"
-      :class="{ 'border-2 border-red-500': hasError }"
+        type="checkbox"
+        :checked="modelValue"
+        @change="$emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
+        class="relative w-3.5 h-3.5 rounded-sm cursor-pointer accent-primary-100"
+        :class="{ 'border-2 border-red-500': hasError }"
     />
     <span class="text-black body-large-medium pl-2">
-      <slot></slot>
-    </span>
+       <slot></slot>
+     </span>
   </div>
 </template>
 
@@ -31,28 +31,29 @@ defineEmits(['update:modelValue']);
 <style scoped>
 input[type="checkbox"] {
   appearance: none;
-  background-color: #F4F4F4;
-  border: 2px solid #F1AB0E;
+  -webkit-appearance: none;
+  background-color: #FFFFFF;
+  border: 1.5px solid #F1AB0E;
   border-radius: 4px;
 }
 
-input[type="checkbox"] {
-  appearance: none;
-  background-color: #F4F4F4;
-  border: 2px solid #F1AB0E;
-  border-radius: 4px;
+input[type="checkbox"]:checked {
+  background-color: #F1AB0E;
+  position: relative;
 }
 
-input[type="checkbox"].border-red-500 {
-  border-color: rgb(239 68 68) !important;
-}
-
-input[type="checkbox"]:checked::before {
+input[type="checkbox"]:checked::after {
   content: "✓";
   font-size: 14px;
   color: white;
   position: absolute;
-  right: 1px;
-  top: -1px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1;
+}
+
+input[type="checkbox"].border-red-500 {
+  border-color: rgb(239 68 68) !important;
 }
 </style>

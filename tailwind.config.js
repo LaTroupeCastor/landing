@@ -8,15 +8,15 @@ export default {
     },
     extend: {
       colors: {
-        background1: "#F6FAFE",
-        primary: "#F4BC3E",
-        primary200: "#FCEECF",
-        primary300: "#FAE1A8",
-        primary400: "#FDF5E2",
-        border: "#EDEDED",
-        backgroundGrey: "#F3F5F7",
-        divider: "#F3F3F2",
-        black40:"#A19F99"
+        primary: {
+          100: "#F1AB0E",
+          80: "#F4BC3E",
+          60: "#F7CD6E",
+          40: "#F9DD9F",
+          20: "#FCEECF",
+          10: "#FEF7E0",
+          5: "#FEFBF3",
+        }
       }
     },
   },
