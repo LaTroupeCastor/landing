@@ -235,7 +235,7 @@ const handleSubmit = async () => {
 
   loading.value = true;
   try {
-    const { data, error } = await supabase.functions.invoke('send_mail', {
+    const { error } = await supabase.functions.invoke('send_mail', {
       body: JSON.stringify({
         emailFrom: formData.value.email,
         message: formData.value.message,
