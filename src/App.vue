@@ -7,6 +7,7 @@ import FourthSection from "./components/sections/FourthSection.vue";
 import FifthSection from "./components/sections/FifthSection.vue";
 import FormSection from "./components/sections/FormSection.vue";
 import ToastManager from "./components/ToastManager.vue";
+import Footer from "./components/Footer.vue";
 
 </script>
 
@@ -19,6 +20,7 @@ import ToastManager from "./components/ToastManager.vue";
       <FourthSection />
       <FifthSection />
       <FormSection />
+      <Footer/>
     </div>
   </MainLayout>
   <ToastManager />
