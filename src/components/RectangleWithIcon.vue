@@ -3,10 +3,10 @@
 </template>
 
 <script setup lang="ts">
-export default {
-  props: {
-    src: String,
-    alt: String
-  }
+interface Props {
+  src: string;
+  alt: string;
 }
+
+defineProps<Props>();
 </script>
