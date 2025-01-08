@@ -13,7 +13,7 @@
         :value="modelValue"
         @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
         :placeholder="placeholder"
-        class="p-3 bg-[#F4F4F4] rounded-lg h-12 body-small-regular"
+        class="p-3 bg-black-10 rounded-lg h-12 body-small-regular placeholder-black-60"
         :class="{ 'border-2 border-red-500': error }"
     >
     <span

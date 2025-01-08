@@ -2,7 +2,7 @@
   <div class="flex-col flex max-w-[600px]">
     <SectionHeader :title="'Parlons ensemble de votre projet'" :subtitle="'Vous avez des questions ?'"/>
     <div class="bg-[#EBEBEB] h-[1.5px] my-6"/>
-    <p class="body-large-regular text-[#A19F99]">Vous
+    <p class="body-large-regular text-black-40">Vous
       avez des questions sur les aides disponibles ou
       souhaitez en savoir
       plus sur notre outil et notre accompagnement
@@ -62,7 +62,7 @@
             v-model="formData.message"
             placeholder="Message"
             rows="4"
-            class="p-3 bg-[#F4F4F4] rounded-lg resize-none body-small-regular"
+            class="p-3 bg-black-10 rounded-lg resize-none body-small-regular placeholder-black-60"
             :class="{ 'border-2 border-red-500': errors.message }"
         ></textarea>
         <span v-if="errors.message" class="text-red-500 text-sm mt-1">{{ errors.message }}</span>
@@ -80,7 +80,7 @@
       </div>
 
       <!-- Submit Button -->
-      <Button type="submit" :cta="true" trailing-icon="../src/assets/send_arrow.svg" :loading="loading" :disabled="isButtonDisabled">Envoyer</Button>
+      <Button type="submit" :cta="true" trailing-icon="./src/assets/send_arrow.svg" :loading="loading" :disabled="isButtonDisabled">Envoyer</Button>
     </form>
   </div>
 </template>

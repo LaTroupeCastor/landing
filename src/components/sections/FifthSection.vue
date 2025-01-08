@@ -1,6 +1,6 @@
 <template>
   <div class="section-style pb-12">
-    <div class="bg-backgroundGrey p-14">
+    <div class="bg-secondary-5 p-14">
       <p class="headline-medium-sbold pl-12 pb-14">Ils nous font confiance</p>
       <div class="flex justify-center items-center gap-16 pb-14">
         <TheyTrustUs />
