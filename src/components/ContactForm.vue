@@ -11,7 +11,7 @@
       sous 48 heures.</p>
 
     <form class="mt-8 space-y-6" @submit.prevent="handleSubmit">
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-2x gap-4">
         <!-- Prénom -->
         <FormField
             id="firstname"
