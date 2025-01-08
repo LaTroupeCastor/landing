@@ -2,7 +2,7 @@
   <img :src="src" class="bg-primary-10 rounded-md p-5" :alt="alt" />
 </template>
 
-<script>
+<script setup lang="ts">
 export default {
   props: {
     src: String,
