@@ -43,7 +43,7 @@
     <!-- Version Mobile -->
     <div class="sm:hidden flex flex-col">
       <img src="../../assets/circle_top_left.svg" class="absolute left-0 top-0 h-4/6" alt="Cercle décoratif" />
-      <div class="px-8 pt-8">
+      <div class="pr-6 pl-8 pt-8">
         <div class="title-large-sbold text-2xl leading-tight">
           Rénover votre <span class="text-primary-100">passoire thermique</span> n'a jamais été aussi simple.
         </div>

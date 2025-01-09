@@ -15,12 +15,6 @@ import Footer from "./components/Footer.vue";
   <MainLayout>
     <div class="flex flex-col gap-52">
       <FirstSection />
-      <SecondSection />
-      <ThirdSection />
-      <FourthSection />
-      <FifthSection />
-      <FormSection />
-      <Footer/>
     </div>
   </MainLayout>
   <ToastManager />
