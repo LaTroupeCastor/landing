@@ -1,7 +1,7 @@
 <template>
   <button
       :class="[
-       'text-center title-small-sbold p-4 rounded flex items-center justify-center gap-2 relative',
+       'text-center body-medium-sbold sm:title-small-sbold p-3 sm:p-4 rounded flex items-center justify-center gap-2 relative',
        !cta ? 'border border-black' : 'bg-primary-100 text-white',
        disabled || loading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
      ]"

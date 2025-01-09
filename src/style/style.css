@@ -379,3 +379,19 @@ body {
         src: url('../public/fonts/Poppins/Poppins-BlackItalic.ttf') format('ttf');
     }
 }
+
+@layer components {
+    .body-medium-sbold {
+        font-family: Poppins, serif;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 600;
+    }
+
+    .title-small-sbold {
+        font-family: Poppins, serif;
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 600;
+    }
+}
