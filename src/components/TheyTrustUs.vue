@@ -3,7 +3,7 @@
     <img src="../assets/guillemet.svg" alt="Guillemet"
          class="absolute top-4 left-7 -z-0"/>
     <p class="p-10 relative">
-      Grâce à Beavy, j'ai pu rénover ma maison rapidement e
+      Grâce à LaTroupeCastor, j'ai pu rénover ma maison rapidement e
       sans stress. Le médiateur a géré toutes les démarches, et
       j'ai même pu bénéficier d'aides auxquelles je ne savais pas
       que j'avais droit. Un vrai gain de temps !
