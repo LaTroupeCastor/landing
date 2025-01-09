@@ -1,9 +1,9 @@
 <template>
   <header class="bg-white relative z-50">
-    <nav class="border-gray-200 px-3 lg:px-5 py-2 dark:gray-800">
+    <nav class="border-gray-200 px-7 py-4 dark:gray-800">
       <div class="flex flex-wrap justify-between">
         <a href="https://flowbite.com" class="flex items-center">
-          <img src="../assets/tete.svg" class="mr-3 h-6 sm:h-9" alt="Tete Logo" />
+          <img src="../assets/tete.svg" class="mr-3 h-14" alt="Tete Logo" />
         </a>
         <div class="flex items-center lg:order-2">
           <!-- Menu desktop -->
