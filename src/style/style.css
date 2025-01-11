@@ -16,11 +16,35 @@
 
 .section-style {
     display: grid;
-    padding-left: 9rem; /* 144px */
-    padding-right: 9rem; /* 144px */
+    padding-left: 2.5rem; /* 16px pour mobile */
+    padding-right: 2.5rem;
     justify-content: space-between;
     width: 100%;
     grid-template-columns: 1fr;
+}
+
+/* Mobile */
+@media (min-width: 640px) {
+    .section-style {
+        padding-left: 2.5rem; /* 40px */
+        padding-right: 2.5rem;
+    }
+}
+
+/* Tablette */
+@media (min-width: 768px) {
+    .section-style {
+        padding-left: 4rem; /* 64px */
+        padding-right: 4rem;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .section-style {
+        padding-left: 8rem; /* 128px */
+        padding-right: 8rem;
+    }
 }
 
 /*-------------------------------- HEADLINE --------------------------------*/

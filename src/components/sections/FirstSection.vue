@@ -1,7 +1,7 @@
 <template>
   <section class="hero-section">
     <!-- Version Desktop -->
-    <div class="hidden lg:flex items-center overflow-hidden pt-16" role="main">
+    <div class="hidden lg:flex items-center overflow-hidden pt-24" role="main">
       <img src="../../assets/circle_top_left.svg" class="absolute left-0 top-0 h-4/6" alt="Cercle décoratif" />
       <div class="flex-1 z-10 pl-32">
         <div class="headline-large-sbold pb-9">Rénover votre <span class="text-primary-100">passoire thermique</span> n'a jamais été aussi simple.</div>
@@ -18,7 +18,7 @@
     </div>
 
     <!-- Version Tablette -->
-    <div class="hidden sm:flex lg:hidden justify-between pl-8 pt-8">
+    <div class="hidden sm:flex lg:hidden justify-between pl-16 pt-14">
       <img src="../../assets/circle_top_left.svg" class="absolute left-0 top-0 h-4/6" alt="Cercle décoratif" />
       <div class="flex-1">
         <div class="headline-small-sbold text-[28px]">
@@ -43,7 +43,7 @@
     <!-- Version Mobile -->
     <div class="sm:hidden flex flex-col">
       <img src="../../assets/circle_top_left.svg" class="absolute left-0 top-0 h-4/6" alt="Cercle décoratif" />
-      <div class="pr-6 pl-8 pt-8">
+      <div class="pr-8 pl-10 pt-8">
         <div class="title-large-sbold text-2xl leading-tight">
           Rénover votre <span class="text-primary-100">passoire thermique</span> n'a jamais été aussi simple.
         </div>
@@ -77,13 +77,4 @@ import Checkbox from "../Checkbox.vue";
 </script>
 
 <style scoped>
-.hero-section {
-  min-height: calc(100vh - 80px);
-}
-
-@media (max-width: 1024px) {
-  .hero-section {
-    min-height: auto;
-  }
-}
 </style>
