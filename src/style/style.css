@@ -416,12 +416,12 @@ body {
     }
 
     .section-header-title {
-        @apply body-small-regular;  /* Mobile par défaut */
+        @apply title-medium-sbold;  /* Mobile par défaut */
     }
 
     @media (min-width: 768px) {
         .section-header-title {
-            @apply body-medium-regular;  /* Tablette */
+            @apply headline-small-sbold;  /* Tablette */
         }
     }
 
@@ -432,12 +432,12 @@ body {
     }
 
     .section-header-subtitle {
-        @apply title-medium-sbold;  /* Mobile par défaut */
+        @apply body-small-regular;  /* Mobile par défaut */
     }
 
     @media (min-width: 768px) {
         .section-header-subtitle {
-            @apply headline-small-sbold;  /* Tablette */
+            @apply body-medium-regular;  /* Tablette */
         }
     }
 

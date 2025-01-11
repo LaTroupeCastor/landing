@@ -23,8 +23,10 @@
     <!-- Version Mobile/Tablet -->
     <div class="lg:hidden">
       <div>
-        <div class="body-medium-regular text-primary-60">Un accompagnement humain, des résultats concrets</div>
-        <div class="headline-small-sbold mt-4">Beavy, votre partenaire pour une rénovation sereine.</div>
+        <SectionHeader
+          title="LaTroupeCastor, votre partenaire pour une rénovation sereine."
+          subtitle="Un accompagnement humain, des résultats concrets"
+        />
         <img src="../../assets/crane.png" alt="Crane" class="w-full h-[400px] sm:h-[500px] object-cover object-top py-10" />
       </div>
 
