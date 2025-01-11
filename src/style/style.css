@@ -415,13 +415,43 @@ body {
         font-weight: 600;
     }
 
+    .body-medium-medium {
+        font-family: Poppins, serif;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 500;
+    }
+
+    .body-large-medium {
+        font-family: Poppins, serif;
+        font-size: 16px;
+        line-height: 21px;
+        font-weight: 500;
+    }
+
     .section-header-title {
         @apply title-medium-sbold;  /* Mobile par défaut */
+    }
+
+    .section-header-subtitle {
+        @apply body-small-regular;  /* Mobile par défaut */
+    }
+
+    .checkbox-text-size {
+        @apply body-small-medium;  /* Mobile par défaut */
     }
 
     @media (min-width: 768px) {
         .section-header-title {
             @apply headline-small-sbold;  /* Tablette */
+        }
+
+        .checkbox-text-size {
+            @apply body-medium-medium;  /* Tablette */
+        }
+
+        .section-header-subtitle {
+            @apply body-medium-regular;  /* Tablette */
         }
     }
 
@@ -429,19 +459,11 @@ body {
         .section-header-title {
             @apply headline-medium-sbold;  /* Desktop */
         }
-    }
 
-    .section-header-subtitle {
-        @apply body-small-regular;  /* Mobile par défaut */
-    }
-
-    @media (min-width: 768px) {
-        .section-header-subtitle {
-            @apply body-medium-regular;  /* Tablette */
+        .checkbox-text-size {
+            @apply body-large-medium;  /* Desktop */
         }
-    }
 
-    @media (min-width: 1024px) {
         .section-header-subtitle {
             @apply title-small-regular;  /* Desktop */
         }
