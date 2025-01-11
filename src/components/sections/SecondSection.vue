@@ -23,12 +23,12 @@
     <!-- Version Mobile/Tablet -->
     <div class="lg:hidden">
       <div>
-        <div class="title-small-medium text-primary-60">Un accompagnement humain, des résultats concrets</div>
+        <div class="body-medium-regular text-primary-60">Un accompagnement humain, des résultats concrets</div>
         <div class="headline-small-sbold mt-4">Beavy, votre partenaire pour une rénovation sereine.</div>
         <img src="../../assets/crane.png" alt="Crane" class="w-full h-[400px] sm:h-[500px] object-cover object-top py-10" />
       </div>
 
-      <div class="body-large-regular">
+      <div class="body-small-regular md:body-medium-regular">
         <div class="pb-4">"Chez Beavy, nous faisons plus que simplement vous mettre en relation avec des artisans qualifiés.</div>
         <div class="pb-4">Nous vous accompagnons du début à la fin de votre projet, tout en vous aidant à obtenir les aides financières auxquelles vous avez droit."</div>
         <div class="w-[10%] h-[6px] bg-primary-100 bg-opacity-20 my-4"></div>

@@ -387,6 +387,20 @@ body {
 }
 
 @layer components {
+    .body-small-regular {
+        font-family: Poppins, serif;
+        font-size: 12px;
+        line-height: 16px;
+        font-weight: 400;
+    }
+
+    .body-medium-regular {
+        font-family: Poppins, serif;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 400;
+    }
+
     .body-medium-sbold {
         font-family: Poppins, serif;
         font-size: 14px;
@@ -399,5 +413,37 @@ body {
         font-size: 18px;
         line-height: 24px;
         font-weight: 600;
+    }
+
+    .section-header-title {
+        @apply body-small-regular;  /* Mobile par défaut */
+    }
+
+    @media (min-width: 768px) {
+        .section-header-title {
+            @apply body-medium-regular;  /* Tablette */
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .section-header-title {
+            @apply headline-medium-sbold;  /* Desktop */
+        }
+    }
+
+    .section-header-subtitle {
+        @apply title-medium-sbold;  /* Mobile par défaut */
+    }
+
+    @media (min-width: 768px) {
+        .section-header-subtitle {
+            @apply headline-small-sbold;  /* Tablette */
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .section-header-subtitle {
+            @apply title-small-regular;  /* Desktop */
+        }
     }
 }
