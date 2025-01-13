@@ -441,6 +441,14 @@ body {
         @apply body-small-medium;  /* Mobile par défaut */
     }
 
+    .what-we-do-title {
+        @apply body-large-sbold; /* Mobile par défaut */
+    }
+
+    .what-we-do-body {
+        @apply body-small-regular; /* Mobile par défaut */
+    }
+
     @media (min-width: 768px) {
         .section-header-title {
             @apply headline-small-sbold;  /* Tablette */
@@ -452,6 +460,14 @@ body {
 
         .section-header-subtitle {
             @apply body-medium-regular;  /* Tablette */
+        }
+
+        .what-we-do-title {
+            @apply title-small-sbold; /* Tablette */
+        }
+
+        .what-we-do-body {
+            @apply body-medium-regular; /* Tablette */
         }
     }
 
@@ -466,6 +482,14 @@ body {
 
         .section-header-subtitle {
             @apply title-small-regular;  /* Desktop */
+        }
+
+        .what-we-do-title {
+            @apply title-medium-sbold; /* Desktop */
+        }
+
+        .what-we-do-body {
+            @apply body-large-regular; /* Desktop */
         }
     }
 }

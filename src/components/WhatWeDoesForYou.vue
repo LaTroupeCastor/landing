@@ -1,8 +1,8 @@
 <template>
   <div class="border-black-10 border-2 rounded-[3px] pt-8 pl-8 pb-6 pr-2">
     <RectangleWithIcon :src="PeopleSvg" alt="personne" />
-    <p class="title-small-sbold my-6 w-[50%] text-black-100">{{title}}</p>
-    <p class="body-large-regular text-black-60">{{body}}</p>
+    <p class="what-we-do-title my-6 w-[50%] text-black-100">{{title}}</p>
+    <p class="what-we-do-body text-black-60">{{body}}</p>
   </div>
 </template>
 <script setup lang="ts">
