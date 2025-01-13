@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col flex max-w-[600px]">
+  <div class="w-full">
     <SectionHeader :title="'Parlons ensemble de votre projet'" :subtitle="'Vous avez des questions ?'"/>
     <div class="bg-[#EBEBEB] h-[1.5px] my-6"/>
     <p class="body-large-regular text-black-40">Vous
@@ -11,7 +11,7 @@
       sous 48 heures.</p>
 
     <form class="mt-8 space-y-6" @submit.prevent="handleSubmit">
-      <div class="grid grid-cols-2x gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <!-- Prénom -->
         <FormField
             id="firstname"
@@ -31,7 +31,7 @@
         />
       </div>
 
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <!-- Email -->
         <FormField
             id="email"
@@ -55,8 +55,7 @@
 
       <!-- Message -->
       <div class="flex flex-col">
-        <label for="message"
-               class="mb-2 title-small-medium">Message</label>
+        <label for="message" class="mb-2 title-small-medium">Message</label>
         <textarea
             id="message"
             v-model="formData.message"

@@ -1,8 +1,14 @@
 <template>
   <div class="section-style">
-    <div class="grid grid-cols-[46%_44%] gap-32">
-      <ContactForm/>
-      <ImageForm/>
+    <div class="container mx-auto">
+      <div class="flex flex-col lg:flex-row lg:justify-between gap-6 lg:gap-32">
+        <div class="w-full lg:w-[42%]">
+          <ContactForm/>
+        </div>
+        <div class="lg:w-[45%]">
+          <ImageForm/>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -11,3 +17,6 @@
 import ImageForm from "../ImageForm.vue";
 import ContactForm from "../ContactForm.vue";
 </script>
+
+<style scoped>
+</style>
