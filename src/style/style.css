@@ -449,6 +449,18 @@ body {
         @apply body-small-regular; /* Mobile par défaut */
     }
 
+    .they-trust-us-title {
+        @apply title-small-sbold; /* Mobile par défaut */
+    }
+
+    .they-trust-us-body {
+        @apply body-medium-regular; /* Mobile par défaut */
+    }
+
+    .they-trust-us-person-name {
+        @apply body-large-medium; /* Mobile par défaut */
+    }
+
     @media (min-width: 768px) {
         .section-header-title {
             @apply headline-small-sbold;  /* Tablette */
@@ -468,6 +480,18 @@ body {
 
         .what-we-do-body {
             @apply body-medium-regular; /* Tablette */
+        }
+
+        .they-trust-us-title {
+            @apply headline-small-sbold; /* Tablette */
+        }
+
+        .they-trust-us-body {
+            @apply body-large-regular; /* Tablette */
+        }
+
+        .they-trust-us-person-name {
+            @apply title-small-medium; /* Tablette */
         }
     }
 
@@ -490,6 +514,18 @@ body {
 
         .what-we-do-body {
             @apply body-large-regular; /* Desktop */
+        }
+
+        .they-trust-us-title {
+            @apply headline-medium-sbold; /* Desktop */
+        }
+
+        .they-trust-us-body {
+            @apply body-large-regular; /* Desktop */
+        }
+
+        .they-trust-us-person-name {
+            @apply title-small-medium; /* Desktop */
         }
     }
 }

@@ -33,13 +33,6 @@
                alt="Illustration gauche"
                class="hidden md:block lg:hidden max-w-full mx-auto"/>
 
-          <!-- Image pour mobile -->
-          <div class="md:hidden">
-            <img src="../../assets/section4_left.svg"
-                 alt="Illustration gauche"
-                 class="max-w-full mx-auto"/>
-          </div>
-
           <!-- Deuxième rangée -->
           <div class="flex flex-col md:flex-row gap-8">
             <div class="w-full md:w-1/2">

@@ -1,7 +1,7 @@
 <template>
-  <div class="section-style pb-12">
+  <div class="section-style">
     <div class="bg-secondary-5 p-8 md:p-14">
-      <h2 class="text-center text-2xl md:text-3xl font-semibold text-primary-1 mb-10">
+      <h2 class="text-center they-trust-us-title text-primary-1 mb-10">
         Ils nous font confiance.
       </h2>
 

@@ -1,6 +1,6 @@
 <template>
   <div alt="image-form" class="flex flex-col">
-    <div class="w-full h-[300px] md:h-[400px] lg:h-auto">
+    <div class="w-full h-[300px] md:h-[400px] lg:h-auto hidden md:flex">
       <img src="../assets/form_right.png" alt="Form" class="w-full h-full object-cover"/>
     </div>
     <div class="flex flex-col md:flex-row mt-5 gap-6">

@@ -33,7 +33,8 @@ export default {
           60: "#688499",
           40: "#97A9B8",
           20: "#C6CFD6",
-          5: "#EAECEE"
+          10: "#EAECEE",
+          5: "#F3F5F7",
         }
       }
     },
