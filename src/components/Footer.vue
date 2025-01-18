@@ -15,10 +15,10 @@
     <div class="flex flex-col">
       <div class="title-large-sbold text-black-100 mb-4">LaTroupeCastor</div>
       <div class="flex flex-col space-y-2">
-        <div class="body-large-regular text-black-60">Aides et primes</div>
-        <div class="body-large-regular text-black-60">Notre équipe</div>
-        <div class="body-large-regular text-black-60">Votre espace client</div>
-        <div class="body-large-regular text-black-60">Faire une simulation</div>
+        <router-link to="/aides-et-primes" class="body-large-regular text-black-60 hover:text-black-100">Aides et primes</router-link>
+        <router-link to="/notre-equipe" class="body-large-regular text-black-60 hover:text-black-100">Notre équipe</router-link>
+        <router-link to="/espace-client" class="body-large-regular text-black-60 hover:text-black-100">Votre espace client</router-link>
+        <router-link to="/simulation" class="body-large-regular text-black-60 hover:text-black-100">Faire une simulation</router-link>
       </div>
     </div>
     <div class="flex md:hidden flex-row space-x-4">

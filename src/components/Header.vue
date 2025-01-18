@@ -3,9 +3,9 @@
     <nav class="border-gray-200 px-7 py-4">
       <div class="flex w-full justify-between items-center">
         <!-- Logo castor -->
-        <a href="#" class="flex items-center">
+        <router-link to="/" class="flex items-center">
           <img src="../assets/tete.svg" class="h-14" alt="Tete Logo" />
-        </a>
+        </router-link>
 
         <!-- Menu et boutons -->
         <div class="flex items-center gap-8">
@@ -13,10 +13,10 @@
           <div class="hidden lg:block">
             <ul class="flex title-small-regular space-x-8">
               <li>
-                <a href="#" class="hover:text-primary-100">Aides et Primes</a>
+                <router-link to="/aides-et-primes" class="hover:text-primary-100">Aides et Primes</router-link>
               </li>
               <li>
-                <a href="#" class="hover:text-primary-100">Notre équipe</a>
+                <router-link to="/notre-equipe" class="hover:text-primary-100">Notre équipe</router-link>
               </li>
             </ul>
           </div>
@@ -24,9 +24,13 @@
           <!-- Boutons -->
           <div class="flex items-center gap-4">
             <div class="hidden lg:block">
-              <Button>Votre espace client</Button>
+              <router-link to="/espace-client">
+                <Button>Votre espace client</Button>
+              </router-link>
             </div>
-            <Button :cta="true">Faire une simulation</Button>
+            <router-link to="/simulation">
+              <Button :cta="true">Faire une simulation</Button>
+            </router-link>
           </div>
 
           <!-- Menu hamburger mobile -->
@@ -49,13 +53,13 @@
       <div :class="{ 'hidden': !isMenuOpen }" class="lg:hidden" id="mobile-menu-2">
         <ul class="flex flex-col mt-4 title-small-regular">
           <li>
-            <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50">Aides et Primes</a>
+            <router-link to="/aides-et-primes" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50">Aides et Primes</router-link>
           </li>
           <li>
-            <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50">Notre équipe</a>
+            <router-link to="/notre-equipe" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50">Notre équipe</router-link>
           </li>
           <li>
-            <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50">Votre espace client</a>
+            <router-link to="/espace-client" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50">Votre espace client</router-link>
           </li>
         </ul>
       </div>
