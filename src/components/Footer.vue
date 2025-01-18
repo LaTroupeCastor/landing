@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-row space-x-14 bg-[#F3F5F7] py-20 px-36">
-    <img :src="CastorFooter" alt="Castor footer" />
-    <div class="flex flex-col justify-center">
+  <div class="flex flex-col lg:flex-row lg:space-x-14 space-y-10 lg:space-y-0 bg-[#F3F5F7] py-10 lg:py-20 px-8 lg:px-36">
+    <img :src="CastorFooter" alt="Castor footer" class="w-48 lg:w-auto" />
+    <div class="flex flex-col justify-center space-y-4 lg:space-y-0">
       <div class="mb-7">
         Chez <strong>LaTroupeCastor</strong>, nous nous engageons à vous mettre en relation avec les bons professionnels
         pour garantir la réussite de votre projet de rénovation énergétique. C'est notre priorité absolue !
