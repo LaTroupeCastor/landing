@@ -21,7 +21,7 @@
         <div class="body-large-regular text-black-60">Faire une simulation</div>
       </div>
     </div>
-    <div class="flex lg:hidden flex-row space-x-4 justify-center">
+    <div class="flex lg:hidden flex-row space-x-4">
       <img :src="Facebook" alt="Facebook" />
       <img :src="Twitter" alt="Twitter" />
       <img :src="Instagram" alt="Instagram" />
