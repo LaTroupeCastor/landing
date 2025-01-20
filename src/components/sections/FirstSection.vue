@@ -1,5 +1,5 @@
 <template>
-  <section class="hero-section">
+  <section>
     <!-- Version Desktop -->
     <div class="hidden lg:flex items-center overflow-hidden pt-24" role="main">
       <img src="../../assets/circle_top_left.svg" class="absolute left-0 top-0 h-4/6" alt="Cercle décoratif" />
