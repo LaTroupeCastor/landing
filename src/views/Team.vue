@@ -1,33 +1,31 @@
 <template>
-  <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold">Notre équipe</h1>
-    
-    <div class="flex justify-between items-start mt-12">
-      <div class="max-w-xl">
-        <h2 class="text-2xl font-bold mb-4">
+  <div class="section-style mt-20">
+    <div class="flex-row flex">
+      <h1 class="headline-large-medium w-9/12">Notre équipe</h1>
+      <div class="flex flex-row w-9/12 justify-center">
+        <img v-for="i in 6" :key="i" src="../assets/tete.svg" alt="Castors" class="w-14" />
+      </div>
+    </div>
+
+    <div class="flex flex-row justify-between items-start mt-12">
+      <div>
+        <h2 class="w-9/12 title-medium-medium">
           Chez Beavy, chaque projet de rénovation commence avec une équipe investie, déterminée à transformer vos idées en réalité.
         </h2>
-        
-        <div class="mt-8 space-y-4">
+      </div>
+        <div class="w-9/12 body-large-regular">
           <p>
             LaTroupeCastor a commencé son histoire avec 2 créateurs qui partageaient la même vision : simplifier la rénovation des logements pour les propriétaires. Ils ont alors décidé de créer une plateforme alliant expertise humain et digital.
-          </p>
-          <p>
             Au fil du temps, l'équipe est passée de 2 à 5 personnes, chacun apportant un savoir-faire unique : design, développement, expert énergétique, management... Ensemble, ils ont bâti un service sur mesure qui accompagne chaque client de A à Z, avec un engagement fort pour l'humain et la qualité.
           </p>
         </div>
-      </div>
-      
-      <div class="flex-shrink-0">
-        <img src="@/assets/castor_footer.svg" alt="Castors" class="w-48" />
-      </div>
     </div>
 
     <div class="grid grid-cols-3 gap-8 mt-16">
       <div v-for="i in 6" :key="i" class="text-center">
         <div class="relative mb-4">
           <div class="bg-orange-100 rounded-lg p-4">
-            <img src="@/assets/visage_personne.png" alt="Photo de profil" class="w-full rounded-lg" />
+            <img src="../assets/visage_personne.png" alt="Photo de profil" class="w-full rounded-lg" />
           </div>
           <div class="absolute bottom-0 left-0 flex gap-2">
             <span class="bg-orange-200 text-sm px-3 py-1 rounded-full">Développeur</span>
