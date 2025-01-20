@@ -3,7 +3,13 @@
     <div class="flex-row flex">
       <h1 class="headline-large-medium w-9/12">Notre équipe</h1>
       <div class="flex flex-row w-9/12 justify-center">
-        <img v-for="i in 6" :key="i" src="../assets/tete.svg" alt="Castors" class="w-14" />
+        <img 
+          v-for="i in 6" 
+          :key="i" 
+          src="../assets/tete.svg" 
+          alt="Castors" 
+          class="w-14 -ml-4 first:ml-0" 
+        />
       </div>
     </div>
 
