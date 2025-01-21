@@ -115,7 +115,6 @@
 </template>
 
 <script setup lang="ts">
-import FormSection from "../components/sections/FormSection.vue";
 import TeamMemberCard from "../components/TeamMemberCard.vue";
 import VisagePersonne from "../assets/visage_personne.png";
 import FormBody from "../components/FormBody.vue";
