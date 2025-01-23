@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { authMiddleware } from './middleware/auth'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -21,7 +22,15 @@ const router = createRouter({
     {
       path: '/espace-client',
       name: 'client-space',
-      component: () => import('../views/ClientSpace.vue')
+      component: () => import('../views/ClientSpace.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/authentication',
+      name: 'auth',
+      component: () => import('../components/Auth.vue')
     },
     {
       path: '/simulation',
@@ -30,5 +39,7 @@ const router = createRouter({
     }
   ]
 })
+
+router.beforeEach(authMiddleware)
 
 export default router
