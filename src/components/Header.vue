@@ -70,9 +70,7 @@
 <script setup lang="ts">
 import Button from "./Button.vue";
 import { ref } from 'vue';
-import { useUserStore } from '../store/userStore';
 
-const userStore = useUserStore();
 const isMenuOpen = ref(false);
 
 const toggleMenu = () => {

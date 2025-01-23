@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { supabase } from "../supabase_client.js";
 import { useUserStore } from '../store/userStore';
 import { useRouter } from 'vue-router';
