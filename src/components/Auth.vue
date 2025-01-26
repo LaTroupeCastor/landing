@@ -6,6 +6,7 @@ import { useRouter } from 'vue-router';
 import {ToastType, useToastStore} from '../store/toastStore';
 import Button from './Button.vue';
 import {AuthResponse, AuthTokenResponsePassword} from "@supabase/supabase-js";
+import {User, UserRole} from "../models/user.ts";
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -35,10 +36,28 @@ const handleAuth = async () => {
         email: email.value,
         password: password.value,
       })
+
+      const user : User = {
+        id: result.data?.user?.id || '',
+        email: email.value,
+        address_id: null,
+        phone: null,
+        first_name: null,
+        last_name: null,
+        created_at: new Date(),
+        updated_at : null,
+        role: UserRole.CLIENT,
+        profile_photo_url: null,
+        username: null,
+        aid_simulation_id: null
+      }
+
+      try {
+        await supabase.from('users').insert([user])
+      } catch (error) {
+        throw new Error('Impossible de créer le compte utilisateur')
+      }
     }
-
-
-    if (result.error) throw new Error(result.error.message)
 
     if (result.data?.user) {
       userStore.setUser({
