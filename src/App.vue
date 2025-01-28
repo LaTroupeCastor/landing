@@ -2,15 +2,20 @@
 import ToastManager from "./components/ToastManager.vue";
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
+import { useRoute } from 'vue-router';
+import {computed} from "vue";
+
+const route = useRoute();
+const hideHeaderFooter = computed(() => route.path === '/simulation');
 </script>
 
 <template>
   <div class="min-h-screen flex flex-col">
-    <Header />
+    <Header v-if="!hideHeaderFooter" />
     <div class="flex-grow">
       <router-view />
     </div>
-    <div class="mt-20">
+    <div class="mt-20" v-if="!hideHeaderFooter">
       <Footer />
     </div>
     <ToastManager />
