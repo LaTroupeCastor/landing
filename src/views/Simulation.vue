@@ -58,9 +58,9 @@ onMounted(() => {
         <p class="title-medium-medium mb-1">Simulateur d'éligibilité aux aides</p>
         <p class="body-small-regular text-black-40">Temps estimé : 5mn</p>
         <div class="flex flex-col gap-16 mt-14">
-          <div v-for="(question, index) in simulationData" 
+          <div v-for="(question, index) in simulationData"
                :key="question.id"
-               :class="{ 'active': currentQuestionIndex === index }"
+               :class="{ 'bg-primary-40': currentQuestionIndex === index }"
                class="cursor-pointer"
                @click="currentQuestionIndex = index; currentSubQuestionIndex = 0">
             <p class="font-medium">{{ question.title }}</p>
@@ -75,7 +75,7 @@ onMounted(() => {
       <div v-if="simulationData[currentQuestionIndex]?.subQuestions[currentSubQuestionIndex]" class="max-w-2xl mx-auto">
         <!-- Progress indicator -->
         <div class="flex justify-between mb-8">
-          <div v-for="(subQuestion, index) in simulationData[currentQuestionIndex].subQuestions" 
+          <div v-for="(subQuestion, index) in simulationData[currentQuestionIndex].subQuestions"
                :key="index"
                class="h-2 bg-gray-200 flex-1 mx-1"
                :class="{ 'bg-primary-500': index <= currentSubQuestionIndex }">
@@ -103,13 +103,13 @@ onMounted(() => {
 
         <!-- Navigation -->
         <div class="flex justify-between mt-8">
-          <button 
+          <button
             @click="previousQuestion"
             :disabled="currentQuestionIndex === 0 && currentSubQuestionIndex === 0"
             class="px-6 py-2 border rounded-lg">
             Précédent
           </button>
-          <button 
+          <button
             @click="nextQuestion"
             class="px-6 py-2 bg-primary-500 text-white rounded-lg">
             Suivant
@@ -129,9 +129,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.active {
-  color: theme('colors.primary.500');
-}
-</style>
