@@ -58,14 +58,16 @@ onMounted(() => {
         <p class="title-medium-medium mb-1">Simulateur d'éligibilité aux aides</p>
         <p class="body-small-regular text-black-40">Temps estimé : 5mn</p>
         <div class="flex flex-col gap-16 mt-14">
-          <div v-for="(question, index) in simulationData"
-               :key="question.id"
-               :class="{ 'bg-primary-40': currentQuestionIndex === index }"
-               class="cursor-pointer"
-               @click="currentQuestionIndex = index; currentSubQuestionIndex = 0">
-            <p class="font-medium">{{ question.title }}</p>
-            <p class="text-sm text-gray-600">{{ question.description }}</p>
-          </div>
+          <StepIndicator
+            v-for="(question, index) in simulationData"
+            :key="question.id"
+            :number="question.step_number"
+            :title="question.title"
+            :current-step="currentQuestionIndex + 1"
+            :is-last="index === simulationData.length - 1"
+            class="cursor-pointer"
+            @click="currentQuestionIndex = index; currentSubQuestionIndex = 0"
+          />
         </div>
       </div>
     </div>
