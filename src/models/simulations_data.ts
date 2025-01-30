@@ -1,5 +1,30 @@
 import { supabase } from '../supabase_client';
 import { SimulationQuestion, SimulationSubQuestion, SimulationAnswer } from './simulation_question';
+import { CreateSimulationDTO, Simulation } from './simulation';
+
+export async function createNewSimulation(existingToken?: string): Promise<Simulation> {
+    const expirationDate = new Date();
+    expirationDate.setHours(expirationDate.getHours() + 24);
+
+    const sessionToken = existingToken || crypto.randomUUID();
+
+    const simulationData: CreateSimulationDTO = {
+        current_step: 1,
+        department: '',
+        email: '',
+        session_token: sessionToken,
+        expiration_date: expirationDate
+    };
+
+    const { data, error } = await supabase
+        .from('aid_simulation')
+        .insert([simulationData])
+        .select()
+        .single();
+
+    if (error) throw error;
+    return data;
+}
 
 export async function fetchSimulationData(): Promise<SimulationQuestion[]> {
     // Fetch main questions

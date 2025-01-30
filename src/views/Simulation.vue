@@ -2,9 +2,11 @@
 import StepIndicator from "../components/StepIndicator.vue";
 import SimulationAnswer from "../components/SimulationAnswer.vue";
 import { onMounted, ref } from 'vue';
-import { fetchSimulationData } from "../models/simulations_data.ts";
+import { createNewSimulation, fetchSimulationData } from "../models/simulations_data.ts";
 import { SimulationQuestion } from "../models/simulation_question.ts";
 import Button from "../components/Button.vue";
+import { Simulation } from "../models/simulation.ts";
+import { useSimulationStore } from "../store/simulationStore";
 
 const simulationData = ref<SimulationQuestion[]>([]);
 const isLoading = ref(true);
@@ -12,9 +14,27 @@ const error = ref<Error | null>(null);
 const currentQuestionIndex = ref(0);
 const currentSubQuestionIndex = ref(0);
 const userAnswers = ref<Record<string, string>>({});
+const currentSimulation = ref<Simulation | null>(null);
+
+const simulationStore = useSimulationStore();
 
 async function loadSimulationData() {
   try {
+    // Vérifier s'il existe une simulation valide
+    let simulation = await simulationStore.checkExistingSimulation();
+    
+    if (simulation) {
+      // Étendre la date d'expiration
+      simulation = await simulationStore.extendSimulationExpiration(simulation);
+      currentSimulation.value = simulation;
+    } else {
+      // Créer une nouvelle simulation
+      const newSimulation = await createNewSimulation();
+      simulationStore.setStoredToken(newSimulation.session_token);
+      currentSimulation.value = newSimulation;
+    }
+    
+    // Charger les questions
     simulationData.value = await fetchSimulationData();
   } catch (e) {
     error.value = e as Error;
