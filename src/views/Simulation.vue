@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import StepIndicator from "../components/StepIndicator.vue";
+import SimulationAnswer from "../components/SimulationAnswer.vue";
 import { onMounted, ref } from 'vue';
 import { fetchSimulationData } from "../models/simulations_data.ts";
 import { SimulationQuestion } from "../models/simulation_question.ts";
+import Button from "../components/Button.vue";
 
 const simulationData = ref<SimulationQuestion[]>([]);
 const isLoading = ref(true);
@@ -47,14 +49,20 @@ function selectAnswer(subQuestionId: string, answerId: string) {
 onMounted(() => {
   loadSimulationData();
 });
+
+const isProgressActive = (index: number) => {
+  console.log(`Checking progress for index ${index}, currentSubQuestionIndex: ${currentSubQuestionIndex.value}`);
+  console.log(`Is active: ${index <= currentSubQuestionIndex.value}`);
+  return index <= currentSubQuestionIndex.value;
+}
 </script>
 
 <template>
   <div class="h-screen flex">
     <!-- Left sidebar with main questions -->
-    <div class="bg-primary-5 w-4/12 h-full">
+    <div class="bg-primary-5 w-1/4 h-full">
       <div class="mx-20 flex flex-col items-start">
-        <img src="../assets/tete.svg" class="h-14 mb-20 mt-10" alt="Tete Logo" />
+        <img src="../assets/tete.svg" class="h-14 mb-12 mt-10" alt="Tete Logo" />
         <p class="title-medium-medium mb-1">Simulateur d'éligibilité aux aides</p>
         <p class="body-small-regular text-black-40">Temps estimé : 5mn</p>
         <div class="flex flex-col gap-16 mt-14">
@@ -73,49 +81,49 @@ onMounted(() => {
     </div>
 
     <!-- Right content with sub-questions -->
-    <div class="flex-1 p-8" v-if="!isLoading && !error">
-      <div v-if="simulationData[currentQuestionIndex]?.subQuestions[currentSubQuestionIndex]" class="max-w-2xl mx-auto">
+    <div class="flex-1 p-8 flex items-center justify-center" v-if="!isLoading && !error">
+      <div v-if="simulationData[currentQuestionIndex]?.subQuestions[currentSubQuestionIndex]" class="max-w-3xl w-full">
         <!-- Progress indicator -->
-        <div class="flex justify-between mb-8">
-          <div v-for="(subQuestion, index) in simulationData[currentQuestionIndex].subQuestions"
-               :key="index"
-               class="h-2 bg-gray-200 flex-1 mx-1"
-               :class="{ 'bg-primary-500': index <= currentSubQuestionIndex }">
+        <div class="flex justify-center mb-16">
+          <div class="flex gap-2 justify-center">
+            <div v-for="(subQuestion, index) in simulationData[currentQuestionIndex].subQuestions"
+                 :key="index"
+                 class="h-2 w-24 rounded-xl"
+               :class="isProgressActive(index) ? 'bg-primary-100' : 'bg-black-5'">
           </div>
         </div>
+      </div>
+
+        <!-- Current question title -->
+        <h2 class="headline-small-sbold mb-6 flex justify-center">
+          {{ simulationData[currentQuestionIndex].title }}
+        </h2>
 
         <!-- Current sub-question -->
         <div class="mb-8">
-          <h3 class="text-xl font-medium mb-6">
+          <h3 class="title-medium-regular mb-16 flex justify-center">
             {{ simulationData[currentQuestionIndex].subQuestions[currentSubQuestionIndex].content }}
           </h3>
 
           <!-- Answers -->
-          <div class="grid gap-4">
-            <button
+          <div class="flex flex-row gap-4 justify-center">
+            <div
               v-for="answer in simulationData[currentQuestionIndex].subQuestions[currentSubQuestionIndex].answers"
               :key="answer.id"
               @click="selectAnswer(simulationData[currentQuestionIndex].subQuestions[currentSubQuestionIndex].id, answer.id)"
-              :class="{ 'bg-primary-100': userAnswers[simulationData[currentQuestionIndex].subQuestions[currentSubQuestionIndex].id] === answer.id }"
-              class="p-4 border rounded-lg text-left hover:bg-gray-50">
-              {{ answer.content }}
-            </button>
+            >
+              <SimulationAnswer
+                :content="answer.content"
+                :is-selected="userAnswers[simulationData[currentQuestionIndex].subQuestions[currentSubQuestionIndex].id] === answer.id"
+              />
+            </div>
           </div>
         </div>
 
         <!-- Navigation -->
-        <div class="flex justify-between mt-8">
-          <button
-            @click="previousQuestion"
-            :disabled="currentQuestionIndex === 0 && currentSubQuestionIndex === 0"
-            class="px-6 py-2 border rounded-lg">
-            Précédent
-          </button>
-          <button
-            @click="nextQuestion"
-            class="px-6 py-2 bg-primary-500 text-white rounded-lg">
-            Suivant
-          </button>
+        <div class="flex justify-between mt-20">
+          <Button :disabled="currentQuestionIndex === 0 && currentSubQuestionIndex === 0" leading-icon="./src/assets/previous.svg" class="text-primary-100 title-small-sbold" @click="previousQuestion">Précédent</Button>
+          <Button :cta=true :disabled="currentQuestionIndex === simulationData.length - 1 && currentSubQuestionIndex === simulationData[currentQuestionIndex].subQuestions.length - 1" trailing-icon="./src/assets/next.svg" class="text-primary-100 title-small-sbold" @click="nextQuestion">Suivant</Button>
         </div>
       </div>
     </div>

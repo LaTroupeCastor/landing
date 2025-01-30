@@ -14,6 +14,13 @@
       <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
     </div>
 
+    <img
+        v-if="leadingIcon && !loading"
+        :src="leadingIcon"
+        :alt="leadingIconAlt || 'Icon'"
+        :class="[`w-${iconSize} h-${iconSize}`]"
+    />
+
     <!-- Content with opacity when loading -->
     <div :class="{ 'opacity-0': loading }">
       <slot></slot>
@@ -34,6 +41,8 @@ interface ButtonProps {
   cta?: boolean;
   trailingIcon?: string;
   trailingIconAlt?: string;
+  leadingIcon?: string;
+  leadingIconAlt?: string;
   iconSize?: number;
   loading?: boolean;
   disabled?: boolean;
