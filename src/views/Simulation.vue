@@ -55,15 +55,28 @@ async function loadSimulationData() {
 }
 
 async function nextQuestion() {
-  // Envoyer les réponses temporaires à la base de données
-  if (currentSimulation.value && Object.keys(tempAnswers.value).length > 0) {
+  const currentQuestion = simulationData.value[currentQuestionIndex.value];
+  let nextStep = currentQuestionIndex.value;
+  let nextSubStep = currentSubQuestionIndex.value;
+
+  if (currentSubQuestionIndex.value < currentQuestion.subQuestions.length - 1) {
+    nextSubStep++;
+  } else if (currentQuestionIndex.value < simulationData.value.length - 1) {
+    nextStep++;
+    nextSubStep = 0;
+  }
+
+  // Envoyer les réponses temporaires et mettre à jour la progression
+  if (currentSimulation.value) {
+    const updateData = {
+      ...(Object.keys(tempAnswers.value).length > 0 ? tempAnswers.value : {}),
+      current_step: nextStep + 1,
+      current_sub_step: nextSubStep
+    };
+
     const { error } = await supabase
       .from('aid_simulation')
-      .update({
-        ...tempAnswers.value,
-        current_step: currentQuestionIndex.value + 1,
-        current_sub_step: currentSubQuestionIndex.value
-      })
+      .update(updateData)
       .eq('id', currentSimulation.value.id);
 
     if (error) {
@@ -72,20 +85,18 @@ async function nextQuestion() {
       // Mettre à jour currentSimulation avec les nouvelles réponses
       currentSimulation.value = {
         ...currentSimulation.value,
-        ...tempAnswers.value
+        ...tempAnswers.value,
+        current_step: nextStep + 1,
+        current_sub_step: nextSubStep
       };
       // Réinitialiser les réponses temporaires
       tempAnswers.value = {};
     }
   }
 
-  const currentQuestion = simulationData.value[currentQuestionIndex.value];
-  if (currentSubQuestionIndex.value < currentQuestion.subQuestions.length - 1) {
-    currentSubQuestionIndex.value++;
-  } else if (currentQuestionIndex.value < simulationData.value.length - 1) {
-    currentQuestionIndex.value++;
-    currentSubQuestionIndex.value = 0;
-  }
+  // Mettre à jour les index après la mise à jour réussie
+  currentQuestionIndex.value = nextStep;
+  currentSubQuestionIndex.value = nextSubStep;
 }
 
 async function previousQuestion() {
