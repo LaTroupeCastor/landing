@@ -16,13 +16,14 @@ export enum OccupancyStatusType {
 export interface Simulation {
     id: string;
     current_step: number;
+    current_sub_step: number;
     session_token: string;
     expiration_date: Date;
     created_at?: Date;
     updated_at?: Date;
     department: string;
     email: string;
-    
+
     // Optional fields
     anah_aid_last_5_years?: boolean;
     biosourced_materials?: boolean;
@@ -37,6 +38,7 @@ export interface Simulation {
 
 export interface CreateSimulationDTO {
     current_step: number;
+    current_sub_step: number;
     department: string;
     email: string;
     session_token: string;

@@ -10,6 +10,7 @@ export async function createNewSimulation(existingToken?: string): Promise<Simul
 
     const simulationData: CreateSimulationDTO = {
         current_step: 1,
+        current_sub_step: 0,
         department: '',
         email: '',
         session_token: sessionToken,

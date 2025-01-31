@@ -3,6 +3,7 @@ import StepIndicator from "../components/StepIndicator.vue";
 import SimulationAnswer from "../components/SimulationAnswer.vue";
 import { onMounted, ref } from 'vue';
 import { createNewSimulation, fetchSimulationData } from "../models/simulations_data.ts";
+import { supabase } from '../supabase_client';
 import { SimulationQuestion } from "../models/simulation_question.ts";
 import Button from "../components/Button.vue";
 import { Simulation } from "../models/simulation.ts";
@@ -36,6 +37,12 @@ async function loadSimulationData() {
     
     // Charger les questions
     simulationData.value = await fetchSimulationData();
+    
+    // Restaurer la progression si elle existe
+    if (simulation) {
+      currentQuestionIndex.value = simulation.current_step - 1;
+      currentSubQuestionIndex.value = simulation.current_sub_step;
+    }
   } catch (e) {
     error.value = e as Error;
   } finally {
@@ -43,7 +50,7 @@ async function loadSimulationData() {
   }
 }
 
-function nextQuestion() {
+async function nextQuestion() {
   const currentQuestion = simulationData.value[currentQuestionIndex.value];
   if (currentSubQuestionIndex.value < currentQuestion.subQuestions.length - 1) {
     currentSubQuestionIndex.value++;
@@ -51,14 +58,44 @@ function nextQuestion() {
     currentQuestionIndex.value++;
     currentSubQuestionIndex.value = 0;
   }
+
+  // Update simulation progress in database
+  if (currentSimulation.value) {
+    const { error } = await supabase
+      .from('aid_simulation')
+      .update({
+        current_step: currentQuestionIndex.value + 1,
+        current_sub_step: currentSubQuestionIndex.value
+      })
+      .eq('id', currentSimulation.value.id);
+
+    if (error) {
+      console.error('Error updating simulation progress:', error);
+    }
+  }
 }
 
-function previousQuestion() {
+async function previousQuestion() {
   if (currentSubQuestionIndex.value > 0) {
     currentSubQuestionIndex.value--;
   } else if (currentQuestionIndex.value > 0) {
     currentQuestionIndex.value--;
     currentSubQuestionIndex.value = simulationData.value[currentQuestionIndex.value].subQuestions.length - 1;
+  }
+
+  // Update simulation progress in database
+  if (currentSimulation.value) {
+    const { error } = await supabase
+      .from('aid_simulation')
+      .update({
+        current_step: currentQuestionIndex.value + 1,
+        current_sub_step: currentSubQuestionIndex.value
+      })
+      .eq('id', currentSimulation.value.id);
+
+    if (error) {
+      console.error('Error updating simulation progress:', error);
+    }
   }
 }
 
@@ -93,8 +130,19 @@ const isProgressActive = (index: number) => {
             :title="question.title"
             :current-step="currentQuestionIndex + 1"
             :is-last="index === simulationData.length - 1"
-            class="cursor-pointer"
-            @click="currentQuestionIndex = index; currentSubQuestionIndex = 0"
+            :class="{
+              'cursor-pointer': Object.keys(userAnswers).length > 0 && index <= Math.max(...simulationData.map((_, i) => 
+                simulationData[i].subQuestions.every(sq => userAnswers[sq.id]) ? i : -1
+              )),
+              'cursor-not-allowed opacity-50': Object.keys(userAnswers).length === 0 || index > Math.max(...simulationData.map((_, i) => 
+                simulationData[i].subQuestions.every(sq => userAnswers[sq.id]) ? i : -1
+              ))
+            }"
+            @click="
+              index <= Math.max(...simulationData.map((_, i) => 
+                simulationData[i].subQuestions.every(sq => userAnswers[sq.id]) ? i : -1
+              )) && (currentQuestionIndex = index, currentSubQuestionIndex = 0)
+            "
           />
         </div>
       </div>
@@ -143,7 +191,18 @@ const isProgressActive = (index: number) => {
         <!-- Navigation -->
         <div class="flex justify-between mt-20">
           <Button :disabled="currentQuestionIndex === 0 && currentSubQuestionIndex === 0" leading-icon="./src/assets/previous.svg" class="text-primary-100 title-small-sbold" @click="previousQuestion">Précédent</Button>
-          <Button :cta=true :disabled="currentQuestionIndex === simulationData.length - 1 && currentSubQuestionIndex === simulationData[currentQuestionIndex].subQuestions.length - 1" trailing-icon="./src/assets/next.svg" class="text-primary-100 title-small-sbold" @click="nextQuestion">Suivant</Button>
+          <Button 
+            :cta=true 
+            :disabled="
+              (currentQuestionIndex === simulationData.length - 1 && 
+              currentSubQuestionIndex === simulationData[currentQuestionIndex].subQuestions.length - 1) || 
+              !userAnswers[simulationData[currentQuestionIndex].subQuestions[currentSubQuestionIndex].id]
+            " 
+            trailing-icon="./src/assets/next.svg" 
+            class="text-primary-100 title-small-sbold" 
+            @click="nextQuestion">
+            Suivant
+          </Button>
         </div>
       </div>
     </div>
