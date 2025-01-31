@@ -1,5 +1,5 @@
 import { supabase } from '../supabase_client';
-import { SimulationQuestion, SimulationSubQuestion, SimulationAnswer } from './simulation_question';
+import { SimulationQuestion, SimulationSubQuestion, SimulationAnswerModel } from './simulation_question';
 import { CreateSimulationDTO, Simulation } from './simulation';
 
 export async function createNewSimulation(existingToken?: string): Promise<Simulation> {
@@ -39,7 +39,7 @@ export async function fetchSimulationData(): Promise<SimulationQuestion[]> {
     // Fetch sub-questions with their answers
     const { data: subQuestions, error: subQuestionsError } = await supabase
         .from('aid_sub_questions')
-        .select<any, SimulationSubQuestion & { answers: SimulationAnswer[] }>(`
+        .select<any, SimulationSubQuestion & { answers: SimulationAnswerModel[] }>(`
             *,
             answers:aid_answers(*)
         `)

@@ -1,16 +1,103 @@
 export enum EnergyLabelType {
-    A = 'A',
-    B = 'B',
-    C = 'C',
-    D = 'D',
+    A_B = 'A_B',
+    C_D = 'C_D',
     E = 'E',
-    F = 'F',
-    G = 'G'
+    F = 'F_G',
+    UNKNOWN = 'UNKNOWN'
+}
+
+export function energyLabelTypeFromString(value: string): EnergyLabelType | undefined {
+    switch (value) {
+        case 'A_B':
+            return EnergyLabelType.A_B;
+        case 'C_D':
+            return EnergyLabelType.C_D;
+        case 'E':
+            return EnergyLabelType.E;
+        case 'F_G':
+            return EnergyLabelType.F;
+        case 'UNKNOWN':
+            return EnergyLabelType.UNKNOWN;
+        default:
+            return undefined;
+    }
+}
+
+//get bool from string (true or false)
+export function getBoolFromString(value: string): boolean {
+    return value === 'true' || value === 'TRUE';
+}
+
+export function workTypeFromString(value: string): WorkType | undefined {
+    switch (value) {
+        case 'isolation':
+            return WorkType.ISOLATION;
+        case 'heating':
+            return WorkType.HEATING;
+        case 'ventilation':
+            return WorkType.VENTILATION;
+        case 'windows':
+            return WorkType.WINDOWS;
+        case 'global':
+            return WorkType.GLOBAL_RENOVATION;
+        default:
+            return undefined;
+    }
+}
+
+export function fiscalIncomeFromString(value: string): FiscalIncomeType | undefined {
+    switch (value) {
+        case 'very_low':
+            return FiscalIncomeType.VERY_LOW;
+        case 'low':
+            return FiscalIncomeType.LOW;
+        case 'medium':
+            return FiscalIncomeType.MEDIUM;
+        case 'high':
+            return FiscalIncomeType.HIGH;
+        case 'very_high':
+            return FiscalIncomeType.VERY_HIGH;
+        default:
+            return undefined;
+    }
+}
+
+export enum FiscalIncomeType {
+    VERY_LOW = "very_low", //De 0 à 15 262
+    LOW = "low", //De 15 263 à 19 565
+    MEDIUM = "medium", //De 19 566 à 29 148
+    HIGH = "high", //De 29 149 à 38 184
+    VERY_HIGH = "very_high", //Plus de 38 184
 }
 
 export enum OccupancyStatusType {
-    OWNER = 'owner',
-    TENANT = 'tenant'
+    OWNER_OCCUPANT = 'owner_occupant',
+    OWNER_LESSOR = 'owner_lessor',
+    TENANT = 'tenant',
+    CO_OWNER = 'co_owner',
+}
+
+export function occupancyStatusTypeFromString(value: string): OccupancyStatusType | undefined {
+    switch (value) {
+        case 'owner_occupant':
+            return OccupancyStatusType.OWNER_OCCUPANT;
+        case 'tenant':
+            return OccupancyStatusType.TENANT;
+        case 'owner_lessor':
+            return OccupancyStatusType.OWNER_LESSOR;
+        case 'co_owner':
+            return OccupancyStatusType.CO_OWNER;
+        default:
+            return undefined;
+    }
+}
+
+export enum WorkType {
+    ISOLATION = 'isolation',
+    HEATING = 'heating',
+    VENTILATION = 'ventilation',
+    WINDOWS = 'windows',
+    GLOBAL_RENOVATION = 'global'
 }
 
 export interface Simulation {
@@ -30,10 +117,10 @@ export interface Simulation {
     building_age_over_15?: boolean;
     energy_diagnostic_done?: boolean;
     energy_label?: EnergyLabelType;
-    fiscal_income?: number;
-    living_area?: number;
+    fiscal_income?: FiscalIncomeType;
     occupancy_status?: OccupancyStatusType;
     token_expiration?: Date;
+    work_type?: WorkType;
 }
 
 export interface CreateSimulationDTO {
@@ -44,3 +131,4 @@ export interface CreateSimulationDTO {
     session_token: string;
     expiration_date: Date;
 }
+
