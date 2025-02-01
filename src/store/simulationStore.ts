@@ -1,72 +1,57 @@
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
-import { Simulation } from '../models/simulation';
-import { supabase } from '../supabase_client';
-
-const SIMULATION_TOKEN_KEY = 'simulation_token';
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+import { Simulation } from '../models/simulation'
+import { simulationService } from '../services/simulationService'
+import { storageService } from '../services/storageService'
 
 export const useSimulationStore = defineStore('simulation', () => {
-    const currentSimulation = ref<Simulation | null>(null);
+  const currentSimulation = ref<Simulation | null>(null)
+  const isLoading = ref(false)
 
-    function getStoredToken(): string | null {
-        return localStorage.getItem(SIMULATION_TOKEN_KEY);
+  async function checkExistingSimulation(): Promise<Simulation | null> {
+    const token = storageService.getSimulationToken()
+    if (!token) return null
+
+    const simulation = await simulationService.getSimulationByToken(token)
+    if (!simulation) {
+      storageService.clearSimulationToken()
+      return null
     }
 
-    function setStoredToken(token: string) {
-        localStorage.setItem(SIMULATION_TOKEN_KEY, token);
+    const expirationDate = new Date(simulation.expiration_date)
+    if (expirationDate < new Date()) {
+      storageService.clearSimulationToken()
+      return null
     }
 
-    function clearStoredToken() {
-        localStorage.removeItem(SIMULATION_TOKEN_KEY);
-    }
+    return simulation
+  }
 
-    async function checkExistingSimulation(): Promise<Simulation | null> {
-        const token = getStoredToken();
-        if (!token) return null;
+  async function createNewSimulation(): Promise<Simulation> {
+    const simulation = await simulationService.createSimulation()
+    storageService.setSimulationToken(simulation.session_token)
+    currentSimulation.value = simulation
+    return simulation
+  }
 
-        const { data, error } = await supabase
-            .from('aid_simulation')
-            .select('*')
-            .eq('session_token', token)
-            .single();
+  async function updateSimulation(id: string, updateData: Partial<Simulation>): Promise<Simulation> {
+    const simulation = await simulationService.updateSimulation(id, updateData)
+    currentSimulation.value = simulation
+    return simulation
+  }
 
-        if (error || !data) {
-            clearStoredToken();
-            return null;
-        }
+  async function extendSimulationExpiration(simulation: Simulation): Promise<Simulation> {
+    const updatedSimulation = await simulationService.extendSimulationExpiration(simulation)
+    currentSimulation.value = updatedSimulation
+    return updatedSimulation
+  }
 
-        const simulation = data as Simulation;
-        const expirationDate = new Date(simulation.expiration_date);
-        
-        if (expirationDate < new Date()) {
-            clearStoredToken();
-            return null;
-        }
-
-        return simulation;
-    }
-
-    async function extendSimulationExpiration(simulation: Simulation): Promise<Simulation> {
-        const newExpirationDate = new Date();
-        newExpirationDate.setHours(newExpirationDate.getHours() + 24);
-
-        const { data, error } = await supabase
-            .from('aid_simulation')
-            .update({ expiration_date: newExpirationDate })
-            .eq('id', simulation.id)
-            .select()
-            .single();
-
-        if (error) throw error;
-        return data;
-    }
-
-    return {
-        currentSimulation,
-        getStoredToken,
-        setStoredToken,
-        clearStoredToken,
-        checkExistingSimulation,
-        extendSimulationExpiration
-    };
-});
+  return {
+    currentSimulation,
+    isLoading,
+    checkExistingSimulation,
+    createNewSimulation,
+    updateSimulation,
+    extendSimulationExpiration
+  }
+})

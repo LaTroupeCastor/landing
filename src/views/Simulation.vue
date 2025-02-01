@@ -1,222 +1,27 @@
 <script setup lang="ts">
-import StepIndicator from "../components/StepIndicator.vue";
-import SimulationAnswer from "../components/SimulationAnswer.vue";
-import { onMounted, ref } from 'vue';
-import { createNewSimulation, fetchSimulationData } from "../models/simulations_data.ts";
-import { supabase } from '../supabase_client';
-import {SimulationAnswerModel, SimulationQuestion, TypeSubQuestion} from "../models/simulation_question.ts";
-import Button from "../components/Button.vue";
-import {
-  energyLabelTypeFromString, fiscalIncomeFromString, getBoolFromString,
-  occupancyStatusTypeFromString,
-  Simulation, workTypeFromString
-} from "../models/simulation.ts";
-import { useSimulationStore } from "../store/simulationStore";
+import StepIndicator from "../components/StepIndicator.vue"
+import SimulationAnswer from "../components/SimulationAnswer.vue"
+import Button from "../components/Button.vue"
+import { onMounted } from 'vue'
+import { useSimulation } from '../composables/useSimulation'
 
-const simulationData = ref<SimulationQuestion[]>([]);
-const isLoading = ref(true);
-const error = ref<Error | null>(null);
-const currentQuestionIndex = ref(0);
-const currentSubQuestionIndex = ref(0);
-const userAnswers = ref<Record<string, string>>({});
-const currentSimulation = ref<Simulation | null>(null);
-
-const simulationStore = useSimulationStore();
-
-async function loadSimulationData() {
-  try {
-    // Vérifier s'il existe une simulation valide
-    let simulation = await simulationStore.checkExistingSimulation();
-
-    if (simulation) {
-      // Étendre la date d'expiration
-      simulation = await simulationStore.extendSimulationExpiration(simulation);
-      currentSimulation.value = simulation;
-    } else {
-      // Créer une nouvelle simulation
-      const newSimulation = await createNewSimulation();
-      simulationStore.setStoredToken(newSimulation.session_token);
-      currentSimulation.value = newSimulation;
-    }
-
-    // Charger les questions
-    simulationData.value = await fetchSimulationData();
-
-    // Restaurer la progression si elle existe
-    if (simulation) {
-      currentQuestionIndex.value = simulation.current_step - 1;
-      currentSubQuestionIndex.value = simulation.current_sub_step;
-    }
-  } catch (e) {
-    error.value = e as Error;
-  } finally {
-    isLoading.value = false;
-  }
-}
-
-async function nextQuestion() {
-  const currentQuestion = simulationData.value[currentQuestionIndex.value];
-  let nextStep = currentQuestionIndex.value;
-  let nextSubStep = currentSubQuestionIndex.value;
-
-  if (currentSubQuestionIndex.value < currentQuestion.subQuestions.length - 1) {
-    nextSubStep++;
-  } else if (currentQuestionIndex.value < simulationData.value.length - 1) {
-    nextStep++;
-    nextSubStep = 0;
-  }
-
-  // Envoyer les réponses temporaires et mettre à jour la progression
-  if (currentSimulation.value) {
-    const updateData = {
-      ...(Object.keys(tempAnswers.value).length > 0 ? tempAnswers.value : {}),
-      current_step: nextStep + 1,
-      current_sub_step: nextSubStep
-    };
-
-    const { error } = await supabase
-      .from('aid_simulation')
-      .update(updateData)
-      .eq('id', currentSimulation.value.id);
-
-    if (error) {
-      console.error('Error updating simulation:', error);
-    } else {
-      // Mettre à jour currentSimulation avec les nouvelles réponses
-      currentSimulation.value = {
-        ...currentSimulation.value,
-        ...tempAnswers.value,
-        current_step: nextStep + 1,
-        current_sub_step: nextSubStep
-      };
-      // Réinitialiser les réponses temporaires
-      tempAnswers.value = {};
-    }
-  }
-
-  // Mettre à jour les index après la mise à jour réussie
-  currentQuestionIndex.value = nextStep;
-  currentSubQuestionIndex.value = nextSubStep;
-}
-
-async function previousQuestion() {
-  if (currentSubQuestionIndex.value > 0) {
-    currentSubQuestionIndex.value--;
-  } else if (currentQuestionIndex.value > 0) {
-    currentQuestionIndex.value--;
-    currentSubQuestionIndex.value = simulationData.value[currentQuestionIndex.value].subQuestions.length - 1;
-  }
-
-  // Update simulation progress in database
-  if (currentSimulation.value) {
-    const { error } = await supabase
-      .from('aid_simulation')
-      .update({
-        current_step: currentQuestionIndex.value + 1,
-        current_sub_step: currentSubQuestionIndex.value
-      })
-      .eq('id', currentSimulation.value.id);
-
-    if (error) {
-      console.error('Error updating simulation progress:', error);
-    }
-  }
-}
-
-function isAnswerSelected(subQuestionType: TypeSubQuestion, answerValue: string): boolean {
-  // Si on a une réponse temporaire, on l'utilise en priorité
-  if (Object.keys(tempAnswers.value).length > 0) {
-    switch(subQuestionType) {
-      case TypeSubQuestion.OCCUPANCY_STATUS:
-        return tempAnswers.value.occupancy_status === occupancyStatusTypeFromString(answerValue);
-      case TypeSubQuestion.ENERGY_LABEL:
-        return tempAnswers.value.energy_label === energyLabelTypeFromString(answerValue);
-      case TypeSubQuestion.FISCAL_INCOME:
-        return tempAnswers.value.fiscal_income === fiscalIncomeFromString(answerValue);
-      case TypeSubQuestion.WORK_TYPE:
-        return tempAnswers.value.work_type === workTypeFromString(answerValue);
-      case TypeSubQuestion.ENERGY_DIAGNOSTIC:
-        return tempAnswers.value.energy_diagnostic_done === getBoolFromString(answerValue);
-      case TypeSubQuestion.BUILDING_AGE:
-        return tempAnswers.value.building_age_over_15 === getBoolFromString(answerValue);
-      case TypeSubQuestion.BIOSOURCED:
-        return tempAnswers.value.biosourced_materials === getBoolFromString(answerValue);
-      case TypeSubQuestion.ANAH:
-        return tempAnswers.value.anah_aid_last_5_years === getBoolFromString(answerValue);
-      default:
-        return false;
-    }
-  }
-  
-  // Sinon on utilise la réponse en base
-  if (currentSimulation.value) {
-    switch(subQuestionType) {
-      case TypeSubQuestion.OCCUPANCY_STATUS:
-        return currentSimulation.value.occupancy_status === occupancyStatusTypeFromString(answerValue);
-      case TypeSubQuestion.ENERGY_LABEL:
-        return currentSimulation.value.energy_label === energyLabelTypeFromString(answerValue);
-      case TypeSubQuestion.FISCAL_INCOME:
-        return currentSimulation.value.fiscal_income === fiscalIncomeFromString(answerValue);
-      case TypeSubQuestion.WORK_TYPE:
-        return currentSimulation.value.work_type === workTypeFromString(answerValue);
-      case TypeSubQuestion.ENERGY_DIAGNOSTIC:
-        return currentSimulation.value.energy_diagnostic_done === getBoolFromString(answerValue);
-      case TypeSubQuestion.BUILDING_AGE:
-        return currentSimulation.value.building_age_over_15 === getBoolFromString(answerValue);
-      case TypeSubQuestion.BIOSOURCED:
-        return currentSimulation.value.biosourced_materials === getBoolFromString(answerValue);
-      case TypeSubQuestion.ANAH:
-        return currentSimulation.value.anah_aid_last_5_years === getBoolFromString(answerValue);
-      default:
-        return false;
-    }
-  }
-  
-  return false;
-}
-
-// Stockage temporaire des réponses
-const tempAnswers = ref<Partial<Simulation>>({});
-
-function selectAnswer(subQuestionType: TypeSubQuestion, answer: SimulationAnswerModel) {
-  // Réinitialiser tempAnswers pour ne garder que la réponse courante
-  tempAnswers.value = {};
-  
-  switch(subQuestionType) {
-    case TypeSubQuestion.OCCUPANCY_STATUS:
-      tempAnswers.value.occupancy_status = occupancyStatusTypeFromString(answer.value);
-      break;
-    case TypeSubQuestion.ENERGY_LABEL:
-      tempAnswers.value.energy_label = energyLabelTypeFromString(answer.value);
-      break;
-    case TypeSubQuestion.FISCAL_INCOME:
-      tempAnswers.value.fiscal_income = fiscalIncomeFromString(answer.value);
-      break;
-    case TypeSubQuestion.WORK_TYPE:
-      tempAnswers.value.work_type = workTypeFromString(answer.value);
-      break;
-    case TypeSubQuestion.ENERGY_DIAGNOSTIC:
-      tempAnswers.value.energy_diagnostic_done = getBoolFromString(answer.value);
-      break;
-    case TypeSubQuestion.BUILDING_AGE:
-      tempAnswers.value.building_age_over_15 = getBoolFromString(answer.value);
-      break;
-    case TypeSubQuestion.BIOSOURCED:
-      tempAnswers.value.biosourced_materials = getBoolFromString(answer.value);
-      break;
-    case TypeSubQuestion.ANAH:
-      tempAnswers.value.anah_aid_last_5_years = getBoolFromString(answer.value);
-      break;
-  }
-}
+const {
+  simulationData,
+  isLoading,
+  error,
+  currentQuestionIndex,
+  currentSubQuestionIndex,
+  loadSimulationData,
+  nextQuestion,
+  previousQuestion,
+  isAnswerSelected,
+  selectAnswer,
+  isProgressActive
+} = useSimulation()
 
 onMounted(() => {
-  loadSimulationData();
-});
-
-const isProgressActive = (index: number) => {
-  return index <= currentSubQuestionIndex.value;
-}
+  loadSimulationData()
+})
 </script>
 
 <template>
@@ -236,17 +41,11 @@ const isProgressActive = (index: number) => {
             :current-step="currentQuestionIndex + 1"
             :is-last="index === simulationData.length - 1"
             :class="{
-              'cursor-pointer': Object.keys(userAnswers).length > 0 && index <= Math.max(...simulationData.map((_, i) =>
-                simulationData[i].subQuestions.every(sq => userAnswers[sq.id]) ? i : -1
-              )),
-              'cursor-not-allowed opacity-50': Object.keys(userAnswers).length === 0 || index > Math.max(...simulationData.map((_, i) =>
-                simulationData[i].subQuestions.every(sq => userAnswers[sq.id]) ? i : -1
-              ))
+              'cursor-pointer': index <= currentQuestionIndex,
+              'cursor-not-allowed opacity-50': index > currentQuestionIndex
             }"
             @click="
-              index <= Math.max(...simulationData.map((_, i) =>
-                simulationData[i].subQuestions.every(sq => userAnswers[sq.id]) ? i : -1
-              )) && (currentQuestionIndex = index, currentSubQuestionIndex = 0)
+              index <= currentQuestionIndex && (currentQuestionIndex = index, currentSubQuestionIndex = 0)
             "
           />
         </div>

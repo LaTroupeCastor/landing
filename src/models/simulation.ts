@@ -25,7 +25,7 @@ export function energyLabelTypeFromString(value: string): EnergyLabelType | unde
 
 //get bool from string (true or false)
 export function getBoolFromString(value: string): boolean {
-    return value === 'true' || value === 'TRUE';
+    return value === 'true' || value === 'TRUE' || value === 'yes';
 }
 
 export function workTypeFromString(value: string): WorkType | undefined {
