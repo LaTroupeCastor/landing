@@ -2,13 +2,19 @@
 import StepIndicator from "../components/StepIndicator.vue"
 import SimulationAnswer from "../components/SimulationAnswer.vue"
 import Button from "../components/Button.vue"
-import { onMounted } from 'vue'
+import {onMounted, ref} from 'vue'
 import { useSimulation } from '../composables/useSimulation'
+import SimulationFinalForm from "../components/SimulationFinalForm.vue";
+import {supabase} from "../supabase_client.ts";
+import {ToastType} from "../store/toastStore.ts";
+import { useToastStore } from '../store/toastStore';
+import {useSimulationStore} from "../store/simulationStore.ts";
 
 const {
   simulationData,
   isLoading,
   error,
+  currentSimulation,
   currentQuestionIndex,
   currentSubQuestionIndex,
   loadSimulationData,
@@ -17,8 +23,71 @@ const {
   isAnswerSelected,
   selectAnswer,
   isProgressActive,
-  isNextDisabled
+  isNextDisabled,
+  shouldShowFinalForm
 } = useSimulation()
+
+const loading = ref(false);
+const toastStore = useToastStore();
+
+const handleFormSubmit = async (data: { firstName: string; lastName: string; email: string }) => {
+  //update simulation data
+  await updateSimulationData(data);
+
+  //check eligibility
+  //await checkEligibility();
+}
+
+const updateSimulationData = async (data: { firstName: string; lastName: string; email: string }) => {
+  loading.value = true;
+  try {
+    //Insert first name, last name and email in the database
+    const { data: resInsertUser, error } = await supabase.from('aid_simulation').update({
+      first_name: data.firstName,
+      last_name: data.lastName,
+      email: data.email,
+    }).eq('id', currentSimulation.value?.id);
+
+
+
+    if (error) {
+      toastStore.addToast('Erreur lors de l\'envoi de l\'email', ToastType.ERROR);
+      return;
+    }
+
+    toastStore.addToast('Message envoyé avec succès', ToastType.SUCCESS);
+    console.log(resInsertUser);
+
+  } catch (error) {
+    toastStore.addToast('Une erreur est survenue lors de l\'envoi du message', ToastType.ERROR);
+  } finally {
+    loading.value = false;
+  }
+}
+
+const checkEligibility = async () => {
+  loading.value = true;
+  try {
+    const { data: resCheckEligibility, error } = await supabase.functions.invoke('check_eligibility', {
+      body: JSON.stringify({
+        simulation_id: currentSimulation.value?.id,
+      }),
+      method: 'POST',
+    });
+
+    if (error) {
+      toastStore.addToast('Erreur lors de l\'envoi de l\'email', ToastType.ERROR);
+      return;
+    }
+
+    toastStore.addToast('Message envoyé avec succès', ToastType.SUCCESS);
+    console.log(resCheckEligibility);
+  } catch (error) {
+    toastStore.addToast('Une erreur est survenue lors de l\'envoi du message', ToastType.ERROR);
+  } finally {
+    loading.value = false;
+  }
+}
 
 onMounted(() => {
   loadSimulationData()
@@ -53,9 +122,13 @@ onMounted(() => {
       </div>
     </div>
 
-    <!-- Right content with sub-questions -->
+    <!-- Right content -->
     <div class="flex-1 p-8 flex items-center justify-center" v-if="!isLoading && !error">
-      <div v-if="simulationData[currentQuestionIndex]?.subQuestions[currentSubQuestionIndex]" class="max-w-3xl w-full">
+      <SimulationFinalForm
+        v-if="shouldShowFinalForm()"
+        @back="previousQuestion"
+       :on-submit="handleFormSubmit"/>
+      <div v-else-if="simulationData[currentQuestionIndex]?.subQuestions[currentSubQuestionIndex]" class="max-w-3xl w-full">
         <!-- Progress indicator -->
         <div class="flex justify-center mb-16">
           <div class="flex gap-2 justify-center">

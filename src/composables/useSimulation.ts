@@ -24,7 +24,8 @@ export function useSimulation() {
     current_sub_step: 0,
     session_token: '',
     expiration_date: new Date(),
-    department: '',
+    name: '',
+    subname: '',
     email: ''
   })
 
@@ -195,12 +196,6 @@ export function useSimulation() {
   function isProgressActive(index: number) {
     return index <= currentSubQuestionIndex.value
   }
-
-  function isLastQuestion(): boolean {
-    return currentQuestionIndex.value === simulationData.value.length - 1 &&
-           currentSubQuestionIndex.value === simulationData.value[currentQuestionIndex.value].subQuestions.length - 1
-  }
-
   function hasCurrentAnswer(): boolean {
     if (!simulationData.value || !tempSimulation.value) return false
 
@@ -232,8 +227,27 @@ export function useSimulation() {
     }
   }
 
+  function isLastQuestion(): boolean {
+    if (!simulationData.value || simulationData.value.length === 0) return false
+
+    const lastQuestionIndex = simulationData.value.length - 1
+    const currentQuestion = simulationData.value[currentQuestionIndex.value]
+    if (!currentQuestion) return false
+
+    const lastSubQuestionIndex = currentQuestion.subQuestions.length - 1
+
+    return currentQuestionIndex.value === lastQuestionIndex &&
+           currentSubQuestionIndex.value === lastSubQuestionIndex
+  }
+
+  function shouldShowFinalForm(): boolean {
+    return isLastQuestion() && hasCurrentAnswer()
+  }
+
   const isNextDisabled = computed(() => {
-    return isLastQuestion() || !hasCurrentAnswer()
+    if (!hasCurrentAnswer()) return true
+    if (isLastQuestion() && !shouldShowFinalForm()) return true
+    return false
   })
 
   return {
@@ -251,6 +265,7 @@ export function useSimulation() {
     selectAnswer,
     isProgressActive,
     isLastQuestion,
-    isNextDisabled
+    isNextDisabled,
+    shouldShowFinalForm
   }
 }
