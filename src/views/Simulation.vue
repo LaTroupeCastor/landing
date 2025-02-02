@@ -28,12 +28,12 @@ onMounted(() => {
 <template>
   <div class="h-screen flex">
     <!-- Left sidebar with main questions -->
-    <div class="bg-primary-5 w-1/4 h-full">
+    <div class="bg-primary-5 w-[30%] h-full">
       <div class="mx-20 flex flex-col items-start">
         <img src="../assets/tete.svg" class="h-14 mb-12 mt-10" alt="Tete Logo" />
         <p class="title-medium-medium mb-1">Simulateur d'éligibilité aux aides</p>
         <p class="body-small-regular text-black-40">Temps estimé : 5mn</p>
-        <div class="flex flex-col gap-16 mt-14">
+        <div class="flex flex-col mt-14">
           <StepIndicator
             v-for="(question, index) in simulationData"
             :key="question.id"

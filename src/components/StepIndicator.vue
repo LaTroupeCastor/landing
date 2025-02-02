@@ -15,8 +15,8 @@ const isCurrent = computed(() => props.number === props.currentStep);
 </script>
 
 <template>
-  <div class="flex items-center gap-7">
-    <div class="relative">
+  <div class="flex items-start gap-7">
+    <div class="flex flex-col items-center">
       <div
         class="rounded-full w-8 h-8 flex items-center justify-center"
         :class="[
@@ -29,7 +29,7 @@ const isCurrent = computed(() => props.number === props.currentStep);
       </div>
       <div
         v-if="!isLast"
-        class="absolute w-[1px] h-16 left-1/2 top-8 -translate-x-1/2"
+        class="w-[1px] h-16"
         :class="[
           isCompleted && !isCurrent
             ? 'bg-primary-100'
