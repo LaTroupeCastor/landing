@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Simulation } from '../models/simulation'
 import { SimulationQuestion, SimulationAnswerModel, TypeSubQuestion } from '../models/simulation_question'
 import { useSimulationStore } from '../store/simulationStore'
@@ -66,6 +66,8 @@ export function useSimulation() {
   }
 
   async function nextQuestion() {
+    if (!hasCurrentAnswer()) return
+
     const currentQuestion = simulationData.value[currentQuestionIndex.value]
     let nextStep = currentQuestionIndex.value
     let nextSubStep = currentSubQuestionIndex.value
@@ -194,6 +196,46 @@ export function useSimulation() {
     return index <= currentSubQuestionIndex.value
   }
 
+  function isLastQuestion(): boolean {
+    return currentQuestionIndex.value === simulationData.value.length - 1 &&
+           currentSubQuestionIndex.value === simulationData.value[currentQuestionIndex.value].subQuestions.length - 1
+  }
+
+  function hasCurrentAnswer(): boolean {
+    if (!simulationData.value || !tempSimulation.value) return false
+
+    const currentQuestion = simulationData.value[currentQuestionIndex.value]
+    if (!currentQuestion) return false
+
+    const currentSubQuestion = currentQuestion.subQuestions[currentSubQuestionIndex.value]
+    if (!currentSubQuestion) return false
+
+    switch(currentSubQuestion.type_sub_questions) {
+      case TypeSubQuestion.OCCUPANCY_STATUS:
+        return tempSimulation.value.occupancy_status != null
+      case TypeSubQuestion.ENERGY_LABEL:
+        return tempSimulation.value.energy_label != null
+      case TypeSubQuestion.FISCAL_INCOME:
+        return tempSimulation.value.fiscal_income != null
+      case TypeSubQuestion.WORK_TYPE:
+        return tempSimulation.value.work_type != null
+      case TypeSubQuestion.ENERGY_DIAGNOSTIC:
+        return tempSimulation.value.energy_diagnostic_done != null
+      case TypeSubQuestion.BUILDING_AGE:
+        return tempSimulation.value.building_age_over_15 != null
+      case TypeSubQuestion.BIOSOURCED:
+        return tempSimulation.value.biosourced_materials != null
+      case TypeSubQuestion.ANAH:
+        return tempSimulation.value.anah_aid_last_5_years != null
+      default:
+        return false
+    }
+  }
+
+  const isNextDisabled = computed(() => {
+    return isLastQuestion() || !hasCurrentAnswer()
+  })
+
   return {
     simulationData,
     isLoading,
@@ -207,6 +249,8 @@ export function useSimulation() {
     previousQuestion,
     isAnswerSelected,
     selectAnswer,
-    isProgressActive
+    isProgressActive,
+    isLastQuestion,
+    isNextDisabled
   }
 }

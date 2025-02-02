@@ -26,8 +26,6 @@ export const simulationService = {
         current_sub_step: 0,
         session_token: sessionToken,
         expiration_date: newExpirationDate,
-        department: '',
-        email: ''
       })
       .select()
       .single()

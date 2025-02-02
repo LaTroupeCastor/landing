@@ -16,7 +16,8 @@ const {
   previousQuestion,
   isAnswerSelected,
   selectAnswer,
-  isProgressActive
+  isProgressActive,
+  isNextDisabled
 } = useSimulation()
 
 onMounted(() => {
@@ -97,10 +98,7 @@ onMounted(() => {
           <Button :disabled="currentQuestionIndex === 0 && currentSubQuestionIndex === 0" leading-icon="./src/assets/previous.svg" class="text-primary-100 title-small-sbold" @click="previousQuestion">Précédent</Button>
           <Button
             :cta=true
-            :disabled="
-              (currentQuestionIndex === simulationData.length - 1 &&
-              currentSubQuestionIndex === simulationData[currentQuestionIndex].subQuestions.length - 1)
-            "
+            :disabled="isNextDisabled"
             trailing-icon="./src/assets/next.svg"
             class="text-primary-100 title-small-sbold"
             @click="nextQuestion">
