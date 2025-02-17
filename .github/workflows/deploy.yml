@@ -1,9 +1,10 @@
 name: Deploy website
 
-on:                                                                                                                                                                                    
-   push:                                                                                                                                                                                
-     tags:                                                                                                                                                                              
+on:
+   push:
+     tags:
        - '[0-9]+.[0-9]+.[0-9]+'
+   workflow_dispatch:  # Permet de déclencher manuellement le workflow
 
 env:
   BRANCH_NAME: ${{ github.ref_name }}
