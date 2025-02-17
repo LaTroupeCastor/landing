@@ -2,6 +2,7 @@
 defineProps<{
   content: string;
   isSelected: boolean;
+  allowMultiple?: boolean;
 }>();
 </script>
 
@@ -17,7 +18,10 @@ defineProps<{
       <!-- Image placeholder -->
       <div class="w-10 h-10 bg-black-5 rounded-[4px]"></div>
       <div class="flex items-center justify-center w-full">
-        <span class="body-large-medium px-10 pt-6 text-center">{{ content }}</span>
+        <span class="body-large-medium px-10 pt-6 text-center">
+          {{ content }}
+          <span v-if="allowMultiple && isSelected" class="ml-2">✓</span>
+        </span>
       </div>
     </div>
   </div>

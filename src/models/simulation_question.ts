@@ -17,6 +17,7 @@ export interface SimulationSubQuestion {
     updated_at: Date;
     type_sub_questions: TypeSubQuestion;
     answers: SimulationAnswerModel[];
+    allow_multiple_answers: boolean;
 }
 
 export interface SimulationAnswerModel {

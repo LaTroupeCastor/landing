@@ -115,7 +115,7 @@ export interface Simulation {
     fiscal_income?: FiscalIncomeType;
     occupancy_status?: OccupancyStatusType;
     token_expiration?: Date;
-    work_type?: WorkType;
+    work_type?: WorkType | WorkType[];
 }
 
 export interface CreateSimulationDTO {

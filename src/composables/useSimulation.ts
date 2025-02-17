@@ -137,7 +137,13 @@ export function useSimulation() {
       case TypeSubQuestion.FISCAL_INCOME:
         return tempSimulation.value.fiscal_income === fiscalIncomeFromString(answerValue)
       case TypeSubQuestion.WORK_TYPE:
-        return tempSimulation.value.work_type === workTypeFromString(answerValue)
+        const workType = workTypeFromString(answerValue)
+        if (!workType) return false
+        
+        if (Array.isArray(tempSimulation.value.work_type)) {
+          return tempSimulation.value.work_type.includes(workType)
+        }
+        return tempSimulation.value.work_type === workType
       case TypeSubQuestion.ENERGY_DIAGNOSTIC:
         return tempSimulation.value.energy_diagnostic_done === getBoolFromString(answerValue)
       case TypeSubQuestion.BUILDING_AGE:
@@ -165,7 +171,24 @@ export function useSimulation() {
         tempSimulation.value.fiscal_income = fiscalIncomeFromString(answer.value)
         break
       case TypeSubQuestion.WORK_TYPE:
-        tempSimulation.value.work_type = workTypeFromString(answer.value)
+        const currentSubQuestion = simulationData.value[currentQuestionIndex.value].subQuestions[currentSubQuestionIndex.value]
+        if (currentSubQuestion.allow_multiple_answers) {
+          const workType = workTypeFromString(answer.value)
+          if (!workType) break
+
+          if (!Array.isArray(tempSimulation.value.work_type)) {
+            tempSimulation.value.work_type = []
+          }
+
+          const index = tempSimulation.value.work_type.indexOf(workType)
+          if (index === -1) {
+            tempSimulation.value.work_type.push(workType)
+          } else {
+            tempSimulation.value.work_type.splice(index, 1)
+          }
+        } else {
+          tempSimulation.value.work_type = workTypeFromString(answer.value)
+        }
         break
       case TypeSubQuestion.ENERGY_DIAGNOSTIC:
         tempSimulation.value.energy_diagnostic_done = getBoolFromString(answer.value)
@@ -213,6 +236,10 @@ export function useSimulation() {
       case TypeSubQuestion.FISCAL_INCOME:
         return tempSimulation.value.fiscal_income != null
       case TypeSubQuestion.WORK_TYPE:
+        if (currentSubQuestion.allow_multiple_answers) {
+          return Array.isArray(tempSimulation.value.work_type) && 
+                 tempSimulation.value.work_type.length > 0
+        }
         return tempSimulation.value.work_type != null
       case TypeSubQuestion.ENERGY_DIAGNOSTIC:
         return tempSimulation.value.energy_diagnostic_done != null
