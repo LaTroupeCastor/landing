@@ -8,7 +8,6 @@ import SimulationFinalForm from "../components/SimulationFinalForm.vue";
 import {supabase} from "../supabase_client.ts";
 import {ToastType} from "../store/toastStore.ts";
 import { useToastStore } from '../store/toastStore';
-import {useSimulationStore} from "../store/simulationStore.ts";
 
 const {
   simulationData,
@@ -35,7 +34,7 @@ const handleFormSubmit = async (data: { firstName: string; lastName: string; ema
   await updateSimulationData(data);
 
   //check eligibility
-  //await checkEligibility();
+  await checkEligibility();
 }
 
 const updateSimulationData = async (data: { firstName: string; lastName: string; email: string }) => {
