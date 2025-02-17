@@ -1,21 +1,15 @@
 export enum EnergyLabelType {
-    A_B = 'A_B',
-    C_D = 'C_D',
-    E = 'E',
-    F = 'F_G',
+    A_B_C_D_E = 'A_B_C_D_E',
+    F_G = 'F_G',
     UNKNOWN = 'UNKNOWN'
 }
 
 export function energyLabelTypeFromString(value: string): EnergyLabelType | undefined {
     switch (value) {
-        case 'A_B':
-            return EnergyLabelType.A_B;
-        case 'C_D':
-            return EnergyLabelType.C_D;
-        case 'E':
-            return EnergyLabelType.E;
+        case 'A_B_C_D_E':
+            return EnergyLabelType.A_B_C_D_E;
         case 'F_G':
-            return EnergyLabelType.F;
+            return EnergyLabelType.F_G
         case 'UNKNOWN':
             return EnergyLabelType.UNKNOWN;
         default:
