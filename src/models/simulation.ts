@@ -32,7 +32,7 @@ export function workTypeFromString(value: string): WorkType | undefined {
             return WorkType.VENTILATION;
         case 'windows':
             return WorkType.WINDOWS;
-        case 'global_renovation':
+        case 'global':
             return WorkType.GLOBAL_RENOVATION;
         default:
             return undefined;
@@ -91,7 +91,7 @@ export enum WorkType {
     HEATING = 'heating',
     VENTILATION = 'ventilation',
     WINDOWS = 'windows',
-    GLOBAL_RENOVATION = 'global_renovation'
+    GLOBAL_RENOVATION = 'global'
 }
 
 export interface Simulation {
