@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { supabase } from "../supabase_client.js";
 import { useUserStore } from '../store/userStore';
 import { useRouter, useRoute } from 'vue-router';
@@ -7,6 +7,7 @@ import {ToastType, useToastStore} from '../store/toastStore';
 import Button from './Button.vue';
 import {AuthResponse, AuthTokenResponsePassword} from "@supabase/supabase-js";
 import {User, UserRole} from "../models/user.ts";
+import type { Simulation } from "../models/simulation";
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -15,8 +16,38 @@ const toastStore = useToastStore();
 const loading = ref(false)
 const email = ref('')
 const password = ref('')
+const firstName = ref('')
+const lastName = ref('')
 const route = useRoute()
 const isLogin = computed(() => route.name === 'login')
+const simulationData = ref<Simulation | null>(null)
+
+onMounted(async () => {
+  console.log(route.params.simulation)
+  if (route.query.simulation && !isLogin.value) {
+    try {
+      console.log(route.query.simulation)
+      const { data, error } = await supabase
+        .from('aid_simulation')
+        .select('*')
+        .eq('id', route.query.simulation)
+        .single()
+
+      if (error) throw error
+
+      if (data) {
+        console.log(data)
+        simulationData.value = data as Simulation
+        email.value = data.email || ''
+        firstName.value = data.first_name || ''
+        lastName.value = data.last_name || ''
+      }
+    } catch (error) {
+      console.error('Error fetching simulation:', error)
+      toastStore.addToast('Erreur lors de la récupération des données de simulation', ToastType.ERROR)
+    }
+  }
+})
 
 
 const handleAuth = async () => {
@@ -102,6 +133,32 @@ const handleAuth = async () => {
       </div>
       <form class="mt-8 space-y-6" @submit.prevent="handleAuth">
         <div class="rounded-md shadow-sm space-y-4">
+          <template v-if="!isLogin">
+            <div>
+              <label for="firstName" class="block text-sm font-medium text-gray-700">Prénom</label>
+              <input
+                id="firstName"
+                name="firstName"
+                type="text"
+                required
+                v-model="firstName"
+                class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
+                placeholder="Votre prénom"
+              />
+            </div>
+            <div>
+              <label for="lastName" class="block text-sm font-medium text-gray-700">Nom</label>
+              <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                required
+                v-model="lastName"
+                class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
+                placeholder="Votre nom"
+              />
+            </div>
+          </template>
           <div>
             <label for="email-address" class="block text-sm font-medium text-gray-700">Adresse email</label>
             <input
@@ -110,6 +167,7 @@ const handleAuth = async () => {
               type="email"
               required
               v-model="email"
+              :readonly="!!simulationData"
               class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
               placeholder="vous@exemple.fr"
             />
@@ -140,7 +198,7 @@ const handleAuth = async () => {
         </div>
 
         <div class="text-center">
-          <router-link 
+          <router-link
             :to="{ name: isLogin ? 'register' : 'login' }"
             class="text-primary-100 hover:text-primary-200 text-sm font-medium"
           >

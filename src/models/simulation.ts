@@ -102,8 +102,8 @@ export interface Simulation {
     expiration_date: Date;
     created_at?: Date;
     updated_at?: Date;
-    name: string;
-    subname: string;
+    first_name: string;
+    last_name: string;
     email: string;
 
     // Optional fields
