@@ -10,7 +10,7 @@ export interface User {
   created_at: Date;              // Creation timestamp with timezone
   updated_at: Date | null;              // Last update timestamp with timezone
   address_id: string | null;      // UUID reference to addresses table
-  aid_simulation_id: string | null;// UUID reference to aid_simulation table
+  aid_simulation_id: string | null; // UUID reference to aid_simulation table
 }
 
 export enum UserRole {

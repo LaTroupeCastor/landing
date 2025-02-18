@@ -74,14 +74,14 @@ const handleAuth = async () => {
         email: email.value,
         address_id: null,
         phone: null,
-        first_name: null,
-        last_name: null,
+        first_name: lastName.value,
+        last_name: firstName.value,
         created_at: new Date(),
         updated_at : null,
         role: UserRole.CLIENT,
         profile_photo_url: null,
         username: null,
-        aid_simulation_id: null
+        aid_simulation_id: typeof route.query.simulation === 'string' ? route.query.simulation : null
       }
 
       try {
