@@ -24,8 +24,8 @@ export function useSimulation() {
     current_sub_step: 0,
     session_token: '',
     expiration_date: new Date(),
-    name: '',
-    subname: '',
+    first_name: '',
+    last_name: '',
     email: ''
   })
 
@@ -139,7 +139,7 @@ export function useSimulation() {
       case TypeSubQuestion.WORK_TYPE:
         const workType = workTypeFromString(answerValue)
         if (!workType) return false
-        
+
         if (Array.isArray(tempSimulation.value.work_type)) {
           return tempSimulation.value.work_type.includes(workType)
         }
@@ -237,7 +237,7 @@ export function useSimulation() {
         return tempSimulation.value.fiscal_income != null
       case TypeSubQuestion.WORK_TYPE:
         if (currentSubQuestion.allow_multiple_answers) {
-          return Array.isArray(tempSimulation.value.work_type) && 
+          return Array.isArray(tempSimulation.value.work_type) &&
                  tempSimulation.value.work_type.length > 0
         }
         return tempSimulation.value.work_type != null
