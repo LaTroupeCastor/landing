@@ -28,8 +28,13 @@ const router = createRouter({
       }
     },
     {
-      path: '/authentication',
-      name: 'auth',
+      path: '/connexion',
+      name: 'login',
+      component: () => import('../components/Auth.vue')
+    },
+    {
+      path: '/inscription',
+      name: 'register',
       component: () => import('../components/Auth.vue')
     },
     {

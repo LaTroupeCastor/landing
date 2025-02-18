@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { supabase } from "../supabase_client.js";
 import { useUserStore } from '../store/userStore';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import {ToastType, useToastStore} from '../store/toastStore';
 import Button from './Button.vue';
 import {AuthResponse, AuthTokenResponsePassword} from "@supabase/supabase-js";
@@ -15,7 +15,8 @@ const toastStore = useToastStore();
 const loading = ref(false)
 const email = ref('')
 const password = ref('')
-const isLogin = ref(true)
+const route = useRoute()
+const isLogin = computed(() => route.name === 'login')
 
 
 const handleAuth = async () => {
@@ -86,9 +87,6 @@ const handleAuth = async () => {
   }
 }
 
-const toggleAuthMode = () => {
-  isLogin.value = !isLogin.value
-}
 </script>
 
 <template>
@@ -142,13 +140,12 @@ const toggleAuthMode = () => {
         </div>
 
         <div class="text-center">
-          <button
-            type="button"
-            @click="toggleAuthMode"
+          <router-link 
+            :to="{ name: isLogin ? 'register' : 'login' }"
             class="text-primary-100 hover:text-primary-200 text-sm font-medium"
           >
             {{ isLogin ? "Pas encore de compte ? S'inscrire" : 'Déjà un compte ? Se connecter' }}
-          </button>
+          </router-link>
         </div>
       </form>
     </div>
