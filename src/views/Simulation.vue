@@ -175,7 +175,7 @@ onMounted(() => {
             @click="previousQuestion"
             aria-label="Question précédente"
           >
-            Précédent
+            <span class="hidden sm:inline">Précédent</span>
           </Button>
           <Button
             :cta=true
@@ -185,7 +185,7 @@ onMounted(() => {
             @click="nextQuestion"
             aria-label="Question suivante"
           >
-            Suivant
+            <span class="hidden sm:inline">Suivant</span>
           </Button>
         </div>
       </div>
