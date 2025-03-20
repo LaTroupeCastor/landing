@@ -24,8 +24,10 @@
           <!-- Boutons -->
           <div class="flex items-center gap-4">
             <div class="hidden lg:block">
-              <router-link to="/espace-client">
-                <Button>Votre espace client</Button>
+              <router-link 
+                :to="userStore.isAuthenticated ? { name: 'client-space' } : { name: 'login' }"
+              >
+                <Button>{{ userStore.isAuthenticated ? 'Mon espace' : 'Espace client' }}</Button>
               </router-link>
             </div>
             <router-link to="/simulation">
@@ -59,7 +61,12 @@
             <router-link to="/notre-equipe" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50">Notre équipe</router-link>
           </li>
           <li>
-            <router-link to="/espace-client" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50">Votre espace client</router-link>
+            <router-link 
+              :to="userStore.isAuthenticated ? { name: 'client-space' } : { name: 'login' }" 
+              class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50"
+            >
+              {{ userStore.isAuthenticated ? 'Mon espace' : 'Espace client' }}
+            </router-link>
           </li>
         </ul>
       </div>
@@ -70,8 +77,10 @@
 <script setup lang="ts">
 import Button from "./Button.vue";
 import { ref } from 'vue';
+import { useUserStore } from '../store/userStore'; // Ajout de l'import
 
 const isMenuOpen = ref(false);
+const userStore = useUserStore(); // Récupération du store utilisateur
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
