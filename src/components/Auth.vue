@@ -123,7 +123,7 @@ const handleAuth = async () => {
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="h-screen flex items-center justify-center bg-gray-50">
     <!-- Ajout de l'image à gauche -->
     <img
       src="../assets/beavy_seul.png"
@@ -131,7 +131,7 @@ const handleAuth = async () => {
       class="hidden md:block w-64 h-auto mr-20"
     />
 
-    <div class="max-w-md w-full space-y-8">
+    <div class="w-full max-w-lg mx-4 space-y-8">
       <!-- Sélecteur type compte -->
       <div class="flex gap-4 mb-8">
         <button
@@ -156,8 +156,8 @@ const handleAuth = async () => {
       </div>
 
       <!-- Formulaire existant (ajouter v-else) -->
-      <div v-else>
-        <div>
+      <div v-else class="h-full flex flex-col justify-center">
+        <div class="flex-grow-0">
           <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
             {{ isLogin ? 'Connexion à votre espace' : 'Créer un compte' }}
           </h2>
