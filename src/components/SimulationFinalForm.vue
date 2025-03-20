@@ -23,23 +23,23 @@ const handleSubmit = () => {
 </script>
 
 <template>
-  <div class="max-w-3xl w-full">
-    <h2 class="headline-small-sbold mb-6 flex justify-center">
+  <div class="w-full max-w-3xl px-4 md:px-0">
+    <h2 class="headline-small-sbold mb-4 md:mb-6 text-center text-xl md:text-2xl">
       Recevez vos résultats par email
     </h2>
-    <p class="title-medium-regular mb-16 flex justify-center">
+    <p class="title-medium-regular mb-8 md:mb-16 text-center text-base md:text-lg">
       Remplissez le formulaire ci-dessous pour recevoir votre simulation détaillée
     </p>
 
-    <form @submit.prevent="handleSubmit" class="space-y-6">
-      <div class="flex gap-4">
+    <form @submit.prevent="handleSubmit" class="space-y-4 md:space-y-6">
+      <div class="flex flex-col md:flex-row gap-4">
         <div class="flex-1">
-          <label class="block body-medium-sbold mb-2">Prénom</label>
+          <label class="block body-medium-sbold mb-2 text-sm md:text-base">Prénom</label>
           <input
             v-model="firstName"
             type="text"
             required
-            class="w-full p-3 border border-black-20 rounded-lg"
+            class="w-full p-2 md:p-3 border border-black-20 rounded-lg text-sm md:text-base"
           />
         </div>
         <div class="flex-1">
