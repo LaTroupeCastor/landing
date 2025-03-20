@@ -32,8 +32,8 @@
     <div class="flex flex-wrap gap-8 mt-16 max-w-screen-xl mx-auto">
       <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
         <TeamMemberCard
-          name="Bastien Métais"
-          nickname="Oupi goupi"
+          name="Bastien"
+          nickname="Bastien"
           :profileImage="VisagePersonne"
           :roles="['Développeur', 'Développeur']"
           description="Il a rejoint l'équipe peut après la création pour le développement de la plateforme"
@@ -41,8 +41,8 @@
       </div>
       <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
         <TeamMemberCard
-          name="Jean Dupont"
-          nickname="JD"
+          name="Maxence"
+          nickname="Maxence"
           :profileImage="VisagePersonne"
           :roles="['Designer']"
           description="Expert en design d'interface, il crée des expériences utilisateur intuitives"
@@ -50,8 +50,8 @@
       </div>
       <div class="hidden lg:block w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
         <TeamMemberCard
-          name="Marie Martin"
-          nickname="MM"
+          name="Vincent"
+          nickname="Vincent"
           :profileImage="VisagePersonne"
           :roles="['Expert']"
           description="Spécialiste des solutions énergétiques pour l'habitat"
@@ -61,16 +61,18 @@
 
     <div class="bg-primary-100 rounded-lg p-6 flex-col md:flex-row justify-between items-center gap-4 my-20 hidden md:flex">
       <p class="title-small-medium text-white text-center md:text-left">Un projet ? Une question ? Vous souhaitez simuler vos aides ?</p>
-      <button class="title-small-sbold text-primary-100 bg-white p-4 rounded-md whitespace-nowrap">
-        Faire une simulation
-      </button>
+      <router-link to="/simulation">
+        <button class="title-small-sbold text-primary-100 bg-white p-4 rounded-md whitespace-nowrap">
+          Faire une simulation
+        </button>
+      </router-link>
     </div>
 
     <div class="flex flex-wrap gap-8 max-w-screen-xl mx-auto">
       <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
         <TeamMemberCard
-          name="Lucas Petit"
-          nickname="LP"
+          name="Paul"
+          nickname="Paul"
           :profileImage="VisagePersonne"
           :roles="['Commercial']"
           description="Il accompagne nos clients dans leurs projets de rénovation"
@@ -78,8 +80,8 @@
       </div>
       <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
         <TeamMemberCard
-          name="Emma Dubois"
-          nickname="ED"
+          name="Mathéo"
+          nickname="Mathéo"
           :profileImage="VisagePersonne"
           :roles="['Marketing']"
           description="Elle développe notre présence et notre communication"
@@ -87,8 +89,8 @@
       </div>
       <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)] block lg:hidden">
         <TeamMemberCard
-            name="Emma Dubois"
-            nickname="ED"
+            name="Océane"
+            nickname="Océane"
             :profileImage="VisagePersonne"
             :roles="['Marketing']"
             description="Elle développe notre présence et notre communication"
@@ -96,8 +98,8 @@
       </div>
       <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
         <TeamMemberCard
-          name="Emma Dubois"
-          nickname="ED"
+          name="Océane"
+          nickname="Océane"
           :profileImage="VisagePersonne"
           :roles="['Marketing']"
           description="Elle développe notre présence et notre communication"
@@ -106,11 +108,13 @@
     </div>
     <div class="bg-primary-100 rounded-lg p-6 flex flex-col sm:flex-row justify-between items-center gap-4 my-20 md:hidden">
       <p class="title-small-medium text-white text-center sm:text-left mb-4 sm:mb-0">Un projet ? Une question ? Vous souhaitez simuler vos aides ?</p>
-      <button class="title-small-sbold text-primary-100 bg-white p-4 rounded-md whitespace-nowrap">
-        Faire une simulation
-      </button>
+      <router-link to="/simulation">
+        <button class="title-small-sbold text-primary-100 bg-white p-4 rounded-md whitespace-nowrap">
+          Faire une simulation
+        </button>
+      </router-link>
     </div>
-    <FormBody/>
+    <FormBody class="mt-16"/>
   </div>
 </template>
 
