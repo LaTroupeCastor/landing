@@ -6,11 +6,15 @@ import { useRoute } from 'vue-router';
 import {computed} from "vue";
 
 const route = useRoute();
-const hideHeaderFooter = computed(() => route.path === '/simulation');
+const hideHeaderFooter = computed(() => 
+  route.path === '/simulation' || 
+  route.name === 'login' || 
+  route.name === 'register'
+);
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div class="h-screen flex flex-col">
     <Header v-if="!hideHeaderFooter" />
     <div class="flex-grow">
       <router-view />
