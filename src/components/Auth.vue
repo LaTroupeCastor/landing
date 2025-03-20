@@ -5,6 +5,7 @@ import { useUserStore } from '../store/userStore';
 import { useRouter, useRoute } from 'vue-router';
 import {ToastType, useToastStore} from '../store/toastStore';
 import Button from './Button.vue';
+import MainLayout from './layout/MainLayout.vue';
 import {AuthResponse, AuthTokenResponsePassword} from "@supabase/supabase-js";
 import {User, UserRole} from "../models/user.ts";
 import type { Simulation } from "../models/simulation";
@@ -123,7 +124,7 @@ const handleAuth = async () => {
 </script>
 
 <template>
-  <div class="h-screen flex items-center justify-center bg-gray-50 relative bg-primary-5">
+  <MainLayout class="h-screen flex items-center justify-center bg-gray-50 relative bg-primary-5">
 
     <!-- Ajout de l'image à gauche -->
     <img
@@ -271,5 +272,5 @@ const handleAuth = async () => {
       </form>
       </div>
     </div>
-  </div>
+  </MainLayout>
 </template>

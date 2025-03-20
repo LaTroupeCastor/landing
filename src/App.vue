@@ -15,13 +15,20 @@ const hideHeaderFooter = computed(() =>
 
 <template>
   <div class="h-screen flex flex-col">
-    <Header v-if="!hideHeaderFooter" />
+    <!-- Header desktop -->
+    <Header v-if="!hideHeaderFooter" class="hidden md:block" />
+    
+    <!-- Header mobile - toujours visible sauf sur simulation -->
+    <Header v-if="route.path !== '/simulation'" class="md:hidden" />
+
     <div class="flex-grow">
       <router-view />
     </div>
+    
     <div class="mt-20" v-if="!hideHeaderFooter">
       <Footer />
     </div>
+    
     <ToastManager />
   </div>
 </template>
