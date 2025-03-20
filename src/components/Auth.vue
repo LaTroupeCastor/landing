@@ -9,6 +9,8 @@ import {AuthResponse, AuthTokenResponsePassword} from "@supabase/supabase-js";
 import {User, UserRole} from "../models/user.ts";
 import type { Simulation } from "../models/simulation";
 
+const isPro = ref(false)
+
 const router = useRouter();
 const userStore = useUserStore();
 const toastStore = useToastStore();
@@ -122,16 +124,48 @@ const handleAuth = async () => {
 
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <!-- Ajout de l'image à gauche -->
+    <img 
+      src="@/assets/beavy_seul.png" 
+      alt="Castor"
+      class="hidden md:block w-64 h-auto mr-20"
+    />
+
     <div class="max-w-md w-full space-y-8">
-      <div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          {{ isLogin ? 'Connexion à votre espace' : 'Créer un compte' }}
-        </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
-          {{ isLogin ? 'Connectez-vous à votre espace client' : 'Inscrivez-vous pour accéder à votre espace client' }}
-        </p>
+      <!-- Sélecteur type compte -->
+      <div class="flex gap-4 mb-8">
+        <button
+          @click="isPro = false"
+          :class="[!isPro ? 'bg-primary-100 text-white' : 'bg-gray-200']"
+          class="flex-1 py-2 rounded-lg transition-colors"
+        >
+          Particulier
+        </button>
+        <button
+          @click="isPro = true"
+          :class="[isPro ? 'bg-primary-100 text-white' : 'bg-gray-200']"
+          class="flex-1 py-2 rounded-lg transition-colors"
+        >
+          Professionnel
+        </button>
       </div>
-      <form class="mt-8 space-y-6" @submit.prevent="handleAuth">
+
+      <!-- Section Professionnel -->
+      <div v-if="isPro" class="text-center py-12 text-gray-500">
+        Fonctionnalité prochainement disponible
+      </div>
+
+      <!-- Formulaire existant (ajouter v-else) -->
+      <div v-else>
+        <div>
+          <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            {{ isLogin ? 'Connexion à votre espace' : 'Créer un compte' }}
+          </h2>
+          <p class="mt-2 text-center text-sm text-gray-600">
+            {{ isLogin ? 'Connectez-vous à votre espace client' : 'Inscrivez-vous pour accéder à votre espace client' }}
+          </p>
+        </div>
+        <form class="mt-8 space-y-6" @submit.prevent="handleAuth">
         <div class="rounded-md shadow-sm space-y-4">
           <template v-if="!isLogin">
             <div>
@@ -199,13 +233,22 @@ const handleAuth = async () => {
 
         <div class="text-center">
           <router-link
-            :to="{ name: isLogin ? 'register' : 'login' }"
+            v-if="isLogin"
+            to="/simulation"
             class="text-primary-100 hover:text-primary-200 text-sm font-medium"
           >
-            {{ isLogin ? "Pas encore de compte ? S'inscrire" : 'Déjà un compte ? Se connecter' }}
+            Pas encore de compte ? Commencer une simulation
+          </router-link>
+          <router-link
+            v-else
+            :to="{ name: 'login' }"
+            class="text-primary-100 hover:text-primary-200 text-sm font-medium"
+          >
+            Déjà un compte ? Se connecter
           </router-link>
         </div>
       </form>
+      </div>
     </div>
   </div>
 </template>
