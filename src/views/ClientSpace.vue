@@ -20,7 +20,7 @@ const WorkTypeLabels = {
 
 const formatValue = (value: any, type?: string) => {
   if (value === null || value === undefined) return 'Non renseigné';
-  
+
   switch(type) {
     case 'boolean':
       return value ? 'Oui' : 'Non';
@@ -29,7 +29,7 @@ const formatValue = (value: any, type?: string) => {
         [EnergyLabelType.A_B_C_D_E]: 'A/B/C/D/E',
         [EnergyLabelType.F_G]: 'F/G',
         [EnergyLabelType.UNKNOWN]: 'Inconnu'
-      }[value] || 'Non renseigné';
+      }[value as EnergyLabelType] || 'Non renseigné';
     case 'fiscal_income':
       return {
         [FiscalIncomeType.VERY_LOW]: 'Très bas',
@@ -37,19 +37,19 @@ const formatValue = (value: any, type?: string) => {
         [FiscalIncomeType.MEDIUM]: 'Moyen',
         [FiscalIncomeType.HIGH]: 'Élevé',
         [FiscalIncomeType.VERY_HIGH]: 'Très élevé'
-      }[value] || 'Non renseigné';
+      }[value as FiscalIncomeType] || 'Non renseigné';
     case 'occupancy_status':
       return {
         [OccupancyStatusType.OWNER_OCCUPANT]: 'Propriétaire occupant',
         [OccupancyStatusType.TENANT]: 'Locataire',
         [OccupancyStatusType.OWNER_LESSOR]: 'Propriétaire bailleur',
         [OccupancyStatusType.CO_OWNER]: 'Copropriétaire'
-      }[value] || 'Non renseigné';
+      }[value as OccupancyStatusType] || 'Non renseigné';
     case 'work_type':
       if (Array.isArray(value)) {
-        return value.map(v => WorkTypeLabels[v] || 'Non renseigné').join(', ');
+        return (value as WorkType[]).map(v => WorkTypeLabels[v] || 'Non renseigné').join(', ');
       }
-      return WorkTypeLabels[value] || 'Non renseigné';
+      return WorkTypeLabels[value as WorkType] || 'Non renseigné';
     default:
       return value.toString();
   }
@@ -57,7 +57,7 @@ const formatValue = (value: any, type?: string) => {
 
 const formattedFields = computed(() => {
   if (!simulation.value) return [];
-  
+
   const fields = [
     { label: 'Prénom', value: simulation.value.first_name },
     { label: 'Nom', value: simulation.value.last_name },
@@ -100,7 +100,7 @@ const logout = async () => {
     <div v-else>
       <div v-if="simulation" class="bg-gray-100 p-6 rounded-lg space-y-4">
         <h2 class="text-xl font-semibold mb-4">Vos informations</h2>
-        
+
         <div v-for="field in formattedFields" :key="field.label" class="flex justify-between border-b pb-2">
           <span class="text-gray-600 font-medium">{{ field.label }}</span>
           <span class="text-gray-800">{{ field.displayValue }}</span>
@@ -113,7 +113,7 @@ const logout = async () => {
 
       <!-- Nouveau placement du bouton de déconnexion -->
       <div class="mt-8 text-center">
-        <button 
+        <button
           @click="logout"
           class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
         >

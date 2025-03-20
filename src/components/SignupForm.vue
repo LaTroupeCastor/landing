@@ -3,7 +3,6 @@ import { ref, defineProps, watch } from 'vue'
 import { supabase } from "../supabase_client.js";
 import { useUserStore } from '../store/userStore';
 import { useRouter } from 'vue-router';
-import { useRoute } from 'vue-router';
 import { ToastType, useToastStore } from '../store/toastStore';
 import Button from './Button.vue';
 import { User, UserRole } from "../models/user.ts";
@@ -14,7 +13,6 @@ const props = defineProps<{
 }>()
 console.log('props:', props)
 const router = useRouter();
-const route = useRoute();
 const userStore = useUserStore();
 const toastStore = useToastStore();
 

@@ -14,14 +14,24 @@ export const simulationService = {
   },
 
   async getSimulationByUserId(userId: string): Promise<Simulation | null> {
-    const { data, error } = await supabase
-      .from('aid_simulation')
-      .select('*')
-      .eq('user_id', userId)
-      .single();
+    //Get users data is user table
+    const { data: simulationId, error: simulationIdError } = await supabase
+        .from('users')
+        .select('aid_simulation_id')
+        .eq('id', userId)
 
-    if (error) return null;
-    return data as Simulation;
+    if (simulationId) {
+      const {data, error} = await supabase
+          .from('aid_simulation')
+          .select('*')
+          .eq('id', simulationId[0].aid_simulation_id)
+          .single();
+
+      if (error || simulationIdError) return null;
+      return data as Simulation;
+    }
+
+    return null;
   },
 
   async createSimulation(): Promise<Simulation> {
