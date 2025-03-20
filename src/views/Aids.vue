@@ -115,5 +115,4 @@
 
 <script setup lang="ts">
 import AidCard from "../components/AidCard.vue";
-import Button from "../components/Button.vue";
 </script>
