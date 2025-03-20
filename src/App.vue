@@ -3,13 +3,11 @@ import ToastManager from "./components/ToastManager.vue";
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import { useRoute } from 'vue-router';
-import {computed} from "vue";
+import { computed } from "vue";
 
 const route = useRoute();
 const hideHeaderFooter = computed(() => 
-  route.path === '/simulation' || 
-  route.name === 'login' || 
-  route.name === 'register'
+  ['simulation', 'login', 'signup'].includes(route.name?.toString() || '')
 );
 </script>
 
@@ -18,8 +16,8 @@ const hideHeaderFooter = computed(() =>
     <!-- Header desktop -->
     <Header v-if="!hideHeaderFooter" class="hidden md:block" />
     
-    <!-- Header mobile - toujours visible sauf sur simulation -->
-    <Header v-if="route.path !== '/simulation'" class="md:hidden" />
+    <!-- Header mobile -->
+    <Header v-if="!hideHeaderFooter" class="md:hidden" />
 
     <div class="flex-grow">
       <router-view />

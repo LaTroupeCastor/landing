@@ -7,16 +7,17 @@ export const authMiddleware = async (
   next: NavigationGuardNext
 ) => {
   const userStore = useUserStore()
-
-  // Vérifier l'état de l'utilisateur à chaque navigation
+  
   await userStore.checkUser()
 
-  if (!userStore.isAuthenticated && to.meta.requiresAuth) {
-    next({ name: 'auth' })
+  // Redirection pour les routes protégées
+  if (to.meta.requiresAuth && !userStore.isAuthenticated) {
+    next({ name: 'login' })
     return
   }
 
-  if (userStore.isAuthenticated && to.name === 'auth') {
+  // Redirection pour les routes réservées aux visiteurs non connectés
+  if (to.meta.requiresGuest && userStore.isAuthenticated) {
     next({ name: 'client-space' })
     return
   }

@@ -30,12 +30,18 @@ const router = createRouter({
     {
       path: '/connexion',
       name: 'login',
-      component: () => import('../components/Auth.vue')
+      component: () => import('../components/Auth.vue'),
+      meta: {
+        requiresGuest: true
+      }
     },
     {
       path: '/inscription',
-      name: 'register',
-      component: () => import('../components/Auth.vue')
+      name: 'signup',
+      component: () => import('../components/Auth.vue'),
+      meta: {
+        requiresGuest: true
+      }
     },
     {
       path: '/simulation',

@@ -13,6 +13,17 @@ export const simulationService = {
     return data as Simulation
   },
 
+  async getSimulationByUserId(userId: string): Promise<Simulation | null> {
+    const { data, error } = await supabase
+      .from('aid_simulation')
+      .select('*')
+      .eq('user_id', userId)
+      .single();
+
+    if (error) return null;
+    return data as Simulation;
+  },
+
   async createSimulation(): Promise<Simulation> {
     const newExpirationDate = new Date()
     newExpirationDate.setHours(newExpirationDate.getHours() + 24)
