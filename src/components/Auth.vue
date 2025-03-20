@@ -125,8 +125,8 @@ const handleAuth = async () => {
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
     <!-- Ajout de l'image à gauche -->
-    <img 
-      src="@/assets/beavy_seul.png" 
+    <img
+      src="../assets/beavy_seul.png"
       alt="Castor"
       class="hidden md:block w-64 h-auto mr-20"
     />
