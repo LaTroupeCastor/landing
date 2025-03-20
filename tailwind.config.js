@@ -35,7 +35,7 @@ export default {
           20: "#C6CFD6",
           10: "#EAECEE",
           5: "#F3F5F7",
-        }
+        },
       }
     },
   },

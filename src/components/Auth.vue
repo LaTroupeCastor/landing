@@ -123,48 +123,69 @@ const handleAuth = async () => {
 </script>
 
 <template>
-  <div class="h-screen flex items-center justify-center bg-gray-50">
+  <div class="h-screen flex items-center justify-center bg-gray-50 relative bg-primary-5">
+
     <!-- Ajout de l'image à gauche -->
     <img
       src="../assets/beavy_seul.png"
       alt="Castor"
-      class="hidden md:block w-64 h-auto mr-20"
+      class="hidden lg:block w-80 h-auto absolute left-0 bottom-0"
     />
 
-    <div class="w-full max-w-lg mx-4 space-y-8">
+    <div class="w-[25%] min-w-[350px] h-[85%] mx-auto bg-white rounded-xl shadow-lg p-8 flex flex-col">
+      <img
+          src="../assets/logo.png"
+          alt="Logo"
+          class="mx-auto w-64"/>
+
+      <!-- Titre et description -->
+      <div v-if="!isPro" class="text-left">
+        <h2 class="mt-8 headline-small-medium text-black-100">
+          {{ isLogin ? 'Identifiez-vous' : 'Créer un compte' }}
+        </h2>
+        <p class="mt-2 body-small-regular text-black-40">
+          {{ isLogin ? 'Connectez-vous pour accèder à vos chantiers' : 'Inscrivez-vous pour accéder à votre espace client' }}
+        </p>
+      </div>
+
       <!-- Sélecteur type compte -->
-      <div class="flex gap-4 mb-8">
-        <button
-          @click="isPro = false"
-          :class="[!isPro ? 'bg-primary-100 text-white' : 'bg-gray-200']"
-          class="flex-1 py-2 rounded-lg transition-colors"
-        >
-          Particulier
-        </button>
-        <button
-          @click="isPro = true"
-          :class="[isPro ? 'bg-primary-100 text-white' : 'bg-gray-200']"
-          class="flex-1 py-2 rounded-lg transition-colors"
-        >
-          Professionnel
-        </button>
+      <div class="bg-black-5 p-1 rounded-lg mt-4">
+        <div class="relative flex gap-1">
+          <!-- Fond de sélection -->
+          <div
+            :class="[
+              isPro ? 'translate-x-full' : 'translate-x-0',
+              'absolute h-full w-1/2 bg-white rounded-lg transition-transform duration-200'
+            ]"
+          ></div>
+
+          <!-- Boutons -->
+          <button
+            @click="isPro = false"
+            class="flex-1 z-10 py-3 body-small-regular font-medium transition-colors"
+            :class="!isPro ? 'text-black-100' : 'text-black-60'"
+          >
+            Particulier
+          </button>
+
+          <button
+            @click="isPro = true"
+            class="flex-1 z-10 py-3 body-small-regular font-medium transition-colors"
+            :class="isPro ? 'text-black-100' : 'text-black-60'"
+          >
+            Professionnel
+          </button>
+        </div>
       </div>
 
       <!-- Section Professionnel -->
-      <div v-if="isPro" class="text-center py-12 text-gray-500">
+      <div v-if="isPro" class="text-center py-6 text-gray-500 flex-1 flex items-center justify-center">
         Fonctionnalité prochainement disponible
       </div>
 
       <!-- Formulaire existant (ajouter v-else) -->
-      <div v-else class="h-full flex flex-col justify-center">
-        <div class="flex-grow-0">
-          <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            {{ isLogin ? 'Connexion à votre espace' : 'Créer un compte' }}
-          </h2>
-          <p class="mt-2 text-center text-sm text-gray-600">
-            {{ isLogin ? 'Connectez-vous à votre espace client' : 'Inscrivez-vous pour accéder à votre espace client' }}
-          </p>
-        </div>
+      <div v-else class="h-full flex flex-col justify-start">
+        <!-- Sélecteur type compte -->
         <form class="mt-8 space-y-6" @submit.prevent="handleAuth">
         <div class="rounded-md shadow-sm space-y-4">
           <template v-if="!isLogin">
@@ -176,7 +197,7 @@ const handleAuth = async () => {
                 type="text"
                 required
                 v-model="firstName"
-                class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
+                class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-black-100 focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
                 placeholder="Votre prénom"
               />
             </div>
@@ -188,7 +209,7 @@ const handleAuth = async () => {
                 type="text"
                 required
                 v-model="lastName"
-                class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
+                class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-black-100 focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
                 placeholder="Votre nom"
               />
             </div>
@@ -202,7 +223,7 @@ const handleAuth = async () => {
               required
               v-model="email"
               :readonly="!!simulationData"
-              class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
+              class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-black-100 focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
               placeholder="vous@exemple.fr"
             />
           </div>
@@ -214,7 +235,7 @@ const handleAuth = async () => {
               type="password"
               required
               v-model="password"
-              class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
+              class="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-black-100 focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
               placeholder="Votre mot de passe"
             />
           </div>
@@ -231,7 +252,7 @@ const handleAuth = async () => {
           </Button>
         </div>
 
-        <div class="text-center">
+        <div class="text-center mb-4">
           <router-link
             v-if="isLogin"
             to="/simulation"
