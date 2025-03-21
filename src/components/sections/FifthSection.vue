@@ -10,7 +10,7 @@
       </div>
 
       <div class="flex justify-center mt-8">
-        <Button :cta="true">Commencez votre simulation maintenant</Button>
+        <router-link to="/simulation"><Button :cta="true">Commencez votre simulation maintenant</Button></router-link>
       </div>
     </div>
   </div>

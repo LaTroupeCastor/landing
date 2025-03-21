@@ -6,7 +6,7 @@
       <div class="flex-1 z-10 pl-32">
         <div class="headline-large-sbold pb-9">Rénover votre <span class="text-primary-100">passoire thermique</span> n'a jamais été aussi simple.</div>
         <div class="title-medium-medium pb-8">Obtenez des aides pour vos travaux et un accompagnement humain de A à Z</div>
-        <Button :cta="true">Faire une simulation en moins de 10 minutes</Button>
+        <router-link to="/simulation"><Button :cta="true">Faire une simulation en moins de 10 minutes</Button></router-link>
         <div class="flex">
           <Checkbox :text="'Gratuit'" class="pr-9"/>
           <Checkbox :text="'Sans engagement'"/>

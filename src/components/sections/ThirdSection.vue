@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="lg:flex mt-16 hidden justify-center">
-          <Button :cta="true">Commencez votre simulation maintenant</Button>
+          <router-link to="/simulation"><Button :cta="true">Commencez votre simulation maintenant</Button></router-link>
         </div>
       </div>
 
