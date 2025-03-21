@@ -43,7 +43,7 @@
         <TeamMemberCard
           name="Maxence"
           nickname="Maxence"
-          :profileImage="VisagePersonne"
+          :profileImage="Maxence"
           :roles="['UI / UX Designer']"
           description="Expert en design d'interface, il crée des expériences utilisateur intuitives"
         />
@@ -115,6 +115,7 @@ import VisagePersonne from "../assets/visage_personne.png";
 import Bastien from "../assets/team/bastien.png";
 import Matheo from "../assets/team/matheo.jpg";
 import Oceanne from "../assets/team/oceane.jpg";
+import Maxence from "../assets/team/maxence.jpg";
 import Paul from "../assets/team/paul.jpg";
 import FormBody from "../components/FormBody.vue";
 
