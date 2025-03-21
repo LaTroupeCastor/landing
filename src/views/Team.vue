@@ -35,8 +35,8 @@
             name="Paul"
             nickname="Paul"
             :profileImage="Paul"
-            :roles="['Commercial']"
-            description="Il accompagne nos clients dans leurs projets de rénovation"
+            :roles="['Big Data']"
+            description="Il a créé la plateforme pour simplifier la rénovation des logements"
         />
       </div>
       <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
@@ -44,7 +44,7 @@
           name="Maxence"
           nickname="Maxence"
           :profileImage="VisagePersonne"
-          :roles="['Designer']"
+          :roles="['UI / UX Designer']"
           description="Expert en design d'interface, il crée des expériences utilisateur intuitives"
         />
       </div>
@@ -53,8 +53,8 @@
           name="Vincent"
           nickname="Vincent"
           :profileImage="VisagePersonne"
-          :roles="['Expert']"
-          description="Spécialiste des solutions énergétiques pour l'habitat"
+          :roles="['Direction Artistique']"
+          description="Il mène la direction artistique de la plateforme"
         />
       </div>
     </div>
@@ -74,8 +74,8 @@
             name="Bastien"
             nickname="Bastien"
             :profileImage="Bastien"
-            :roles="['Développeur', 'Développeur']"
-            description="Il a rejoint l'équipe peut après la création pour le développement de la plateforme"
+            :roles="['Développeur']"
+            description="Il développe la plateforme pour simplifier la rénovation des logements"
         />
       </div>
       <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
@@ -83,8 +83,8 @@
           name="Mathéo"
           nickname="Mathéo"
           :profileImage="Matheo"
-          :roles="['Marketing']"
-          description="Elle développe notre présence et notre communication"
+          :roles="['Marketing digital']"
+          description="Il développe notre présence et notre communication"
         />
       </div>
       <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
@@ -92,8 +92,8 @@
           name="Océane"
           nickname="Océane"
           :profileImage="Oceanne"
-          :roles="['Marketing']"
-          description="Elle développe notre présence et notre communication"
+          :roles="['Chef de projet']"
+          description="Elle coordonne les projets de rénovation de A à Z"
         />
       </div>
     </div>
