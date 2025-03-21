@@ -98,7 +98,7 @@ onMounted(() => {
     <!-- Left sidebar with main questions -->
     <div class="w-full md:w-[30%] bg-primary-5 md:h-screen">
       <div class="px-4 md:mx-20 flex flex-col items-start py-4 md:py-0">
-        <img src="../assets/tete.svg" class="h-10 md:h-14 mb-6 md:mb-12 mt-2 md:mt-10" alt="Tete Logo" />
+        <router-link to="/"><img src="../assets/tete.svg" class="h-10 md:h-14 mb-6 md:mb-12 mt-2 md:mt-10" alt="Tete Logo" /></router-link>
         <p class="title-medium-medium mb-1 text-base md:text-lg">Simulateur d'éligibilité aux aides</p>
         <p class="body-small-regular text-black-40 text-sm md:text-base">Temps estimé : 5mn</p>
         <div class="flex flex-row md:flex-col gap-2 mt-4 md:mt-14 w-full md:w-auto overflow-x-auto pb-2">
