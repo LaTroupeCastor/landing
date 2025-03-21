@@ -48,7 +48,7 @@
           description="Expert en design d'interface, il crée des expériences utilisateur intuitives"
         />
       </div>
-      <div class="hidden lg:block w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
+      <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
         <TeamMemberCard
           name="Vincent"
           nickname="Vincent"
