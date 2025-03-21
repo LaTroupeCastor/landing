@@ -87,15 +87,6 @@
           description="Elle développe notre présence et notre communication"
         />
       </div>
-      <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)] block lg:hidden">
-        <TeamMemberCard
-            name="Océane"
-            nickname="Océane"
-            :profileImage="Oceanne"
-            :roles="['Marketing']"
-            description="Elle développe notre présence et notre communication"
-        />
-      </div>
       <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
         <TeamMemberCard
           name="Océane"
