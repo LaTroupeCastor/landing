@@ -32,11 +32,11 @@
     <div class="flex flex-wrap gap-8 mt-16 max-w-screen-xl mx-auto">
       <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
         <TeamMemberCard
-          name="Bastien"
-          nickname="Bastien"
-          :profileImage="VisagePersonne"
-          :roles="['Développeur', 'Développeur']"
-          description="Il a rejoint l'équipe peut après la création pour le développement de la plateforme"
+            name="Paul"
+            nickname="Paul"
+            :profileImage="Paul"
+            :roles="['Commercial']"
+            description="Il accompagne nos clients dans leurs projets de rénovation"
         />
       </div>
       <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
@@ -71,18 +71,18 @@
     <div class="flex flex-wrap gap-8 max-w-screen-xl mx-auto">
       <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
         <TeamMemberCard
-          name="Paul"
-          nickname="Paul"
-          :profileImage="VisagePersonne"
-          :roles="['Commercial']"
-          description="Il accompagne nos clients dans leurs projets de rénovation"
+            name="Bastien"
+            nickname="Bastien"
+            :profileImage="Bastien"
+            :roles="['Développeur', 'Développeur']"
+            description="Il a rejoint l'équipe peut après la création pour le développement de la plateforme"
         />
       </div>
       <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
         <TeamMemberCard
           name="Mathéo"
           nickname="Mathéo"
-          :profileImage="VisagePersonne"
+          :profileImage="Matheo"
           :roles="['Marketing']"
           description="Elle développe notre présence et notre communication"
         />
@@ -91,7 +91,7 @@
         <TeamMemberCard
             name="Océane"
             nickname="Océane"
-            :profileImage="VisagePersonne"
+            :profileImage="Oceanne"
             :roles="['Marketing']"
             description="Elle développe notre présence et notre communication"
         />
@@ -100,7 +100,7 @@
         <TeamMemberCard
           name="Océane"
           nickname="Océane"
-          :profileImage="VisagePersonne"
+          :profileImage="Oceanne"
           :roles="['Marketing']"
           description="Elle développe notre présence et notre communication"
         />
@@ -121,6 +121,10 @@
 <script setup lang="ts">
 import TeamMemberCard from "../components/TeamMemberCard.vue";
 import VisagePersonne from "../assets/visage_personne.png";
+import Bastien from "../assets/team/bastien.png";
+import Matheo from "../assets/team/matheo.jpg";
+import Oceanne from "../assets/team/oceane.jpg";
+import Paul from "../assets/team/paul.jpg";
 import FormBody from "../components/FormBody.vue";
 
 </script>
