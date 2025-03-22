@@ -65,7 +65,7 @@ const handleSubmit = () => {
 
       <div class="flex justify-between mt-10">
         <Button
-          leading-icon="./src/assets/previous.svg"
+          leading-icon="../src/assets/previous.svg"
           class="text-primary-100 title-small-sbold"
           type="button"
           @click="$emit('back')"

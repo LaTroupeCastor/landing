@@ -3,6 +3,7 @@ defineProps<{
   content: string;
   isSelected: boolean;
   allowMultiple?: boolean;
+  imageUrl: string; // Ajout de la prop
 }>();
 </script>
 
@@ -15,8 +16,12 @@ defineProps<{
     }"
   >
     <div class="flex flex-col items-center py-4 md:py-6">
-      <!-- Image placeholder -->
-      <div class="w-10 h-10 md:w-12 md:h-12 bg-black-5 rounded-[4px]"></div>
+      <!-- Remplacement de la div par l'image -->
+      <img
+        :src="`/questions_icons/${imageUrl}.svg`"
+        class="w-6 h-6 md:w-8 md:h-8 object-contain mb-2"
+        :alt="content"
+      />
       <div class="flex items-center justify-center w-full">
         <span class="body-large-medium px-3 md:px-6 pt-3 md:pt-4 text-center text-sm md:text-base">
           {{ content }}

@@ -163,6 +163,7 @@ onMounted(() => {
               <SimulationAnswer
                 :content="answer.content"
                 :is-selected="isAnswerSelected(simulationData[currentQuestionIndex].subQuestions[currentSubQuestionIndex].type_sub_questions, answer.value)"
+                :image-url="answer.image_url"
               />
             </div>
           </div>
