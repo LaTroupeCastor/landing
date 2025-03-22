@@ -79,7 +79,7 @@
       </div>
 
       <!-- Submit Button -->
-      <Button type="submit" :cta="true" trailing-icon="./src/assets/send_arrow.svg" :loading="loading" :disabled="isButtonDisabled">Envoyer</Button>
+      <Button type="submit" :cta="true" :trailing-icon="sendArrow" :loading="loading" :disabled="isButtonDisabled">Envoyer</Button>
     </form>
   </div>
 </template>
@@ -93,6 +93,7 @@ import {supabase} from "../supabase_client.ts";
 import {ToastType, useToastStore} from "../store/toastStore.ts";
 import Button from "./Button.vue";
 import FormField from "./FormField.vue";
+import sendArrow from '../assets/send_arrow.svg';
 
 const toastStore = useToastStore();
 const loading = ref(false);

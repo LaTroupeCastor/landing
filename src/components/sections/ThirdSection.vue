@@ -6,7 +6,7 @@
     />
 
 
-        <div class="lg:flex lg:flex-row lg:space-x-16 lg:mt-16">
+        <div class="lg:flex lg:flex-row lg:space-x-16 lg:mt-16 items-center">
           <div class="flex flex-col gap-10 mt-6 lg:w-4/6">
             <StepItem
                 :number="1"
@@ -21,8 +21,12 @@
                 :text="'Nous vous accompagnons dans toutes les étapes de votre rénovation.'"
             />
           </div>
-          <div class="w-1/2 lg:flex hidden items-center justify-center">
-            PLACEHOLDER
+          <div class="w-1/2 lg:flex hidden items-center justify-center self-stretch">
+            <img
+              src="../../assets/idea_castor.png"
+              alt="Idée Castor"
+              class="w-full h-auto object-contain"
+            >
           </div>
         </div>
         <div class="lg:flex mt-16 hidden justify-center">

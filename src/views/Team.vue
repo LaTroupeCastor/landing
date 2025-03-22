@@ -52,7 +52,7 @@
         <TeamMemberCard
           name="Vincent"
           nickname="Vincent"
-          :profileImage="VisagePersonne"
+          :profileImage="Vincent"
           :roles="['Direction Artistique']"
           description="Il mène la direction artistique de la plateforme"
         />
@@ -111,11 +111,11 @@
 
 <script setup lang="ts">
 import TeamMemberCard from "../components/TeamMemberCard.vue";
-import VisagePersonne from "../assets/visage_personne.png";
 import Bastien from "../assets/team/bastien.png";
 import Matheo from "../assets/team/matheo.jpg";
 import Oceanne from "../assets/team/oceane.jpg";
 import Maxence from "../assets/team/maxence.jpg";
+import Vincent from "../assets/team/vincent.jpg";
 import Paul from "../assets/team/paul.jpg";
 import FormBody from "../components/FormBody.vue";
 
