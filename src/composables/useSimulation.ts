@@ -18,6 +18,7 @@ export function useSimulation() {
   const currentQuestionIndex = ref(0)
   const currentSubQuestionIndex = ref(0)
   const currentSimulation = ref<Simulation | null>(null)
+  const isResumed = ref(false)
   const tempSimulation = ref<Simulation>({
     id: '',
     current_step: 1,
@@ -34,11 +35,13 @@ export function useSimulation() {
   async function loadSimulationData() {
     try {
       isLoading.value = true
+      isResumed.value = false
 
       // Vérifier s'il existe une simulation valide
       let simulation = await simulationStore.checkExistingSimulation()
 
       if (simulation) {
+        isResumed.value = true
         // Étendre la date d'expiration
         simulation = await simulationStore.extendSimulationExpiration(simulation)
       } else {
@@ -285,6 +288,7 @@ export function useSimulation() {
     currentSubQuestionIndex,
     currentSimulation,
     tempSimulation,
+    isResumed,
     loadSimulationData,
     nextQuestion,
     previousQuestion,

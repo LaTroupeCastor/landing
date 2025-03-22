@@ -25,7 +25,8 @@ const {
   selectAnswer,
   isProgressActive,
   isNextDisabled,
-  shouldShowFinalForm
+  shouldShowFinalForm,
+  isResumed
 } = useSimulation()
 
 const loading = ref(false);
@@ -90,8 +91,11 @@ const checkEligibility = async () => {
   }
 }
 
-onMounted(() => {
-  loadSimulationData()
+onMounted(async () => {
+  await loadSimulationData()
+  if (isResumed.value) {
+    toastStore.addToast('Votre simulation précédente a été rechargée', ToastType.INFO, '↻', 4000);
+  }
 })
 </script>
 
