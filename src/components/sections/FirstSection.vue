@@ -60,7 +60,7 @@
         </div>
 
         <div class="flex flex-col gap-6">
-          <Button :cta="true" class="w-8/12 mt-6">Faire une simulation</Button>
+          <router-link to="/simulation"><Button :cta="true" class="w-8/12 mt-6">Faire une simulation</Button></router-link>
           <div class="flex gap-4">
             <Checkbox :need-padding="false" :text="'Gratuit'" />
             <Checkbox :need-padding="false" :text="'Sans engagement'" />
