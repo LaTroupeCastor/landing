@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
       <AidCard
         title="MaPrimeRénov'"
         amount="jusqu'à 20 000€"
@@ -46,6 +46,19 @@
         ]"
         link="https://www.maine-et-loire.fr/aides-et-services/logement-et-habitat"
         linkText="Département 49"
+      />
+
+      <AidCard
+        title="Certificats d'Économies d'Énergie (CEE)"
+        amount="Variable selon les travaux (exemple : 2 500 à 5 000 € pour une chaudière à condensation)"
+        description="Dispositif national financé par les fournisseurs d'énergie pour inciter aux économies d'énergie."
+        :conditions="[
+          'Accessible à tous les propriétaires ou locataires',
+          'Travaux réalisés par un artisan certifié RGE (Reconnu Garant de l'Environnement)',
+          'Travaux éligibles : isolation, chaudières performantes, pompes à chaleur, etc.'
+        ]"
+        link="https://www.service-public.fr/particuliers/vosdroits/F35584"
+        linkText="CEE"
       />
     </div>
 
