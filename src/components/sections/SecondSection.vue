@@ -22,7 +22,7 @@
 
     <!-- Version Mobile/Tablet -->
     <div class="lg:hidden">
-      <div class="pb-6 pl-8">
+      <div class="pb-6 px-8">
         <SectionHeader
           title="LaTroupeCastor, votre partenaire pour une rénovation sereine."
           subtitle="Un accompagnement humain, des résultats concrets"
