@@ -7,8 +7,7 @@
     </p>
     <div alt="divider" class="bg-divider h-[1.5px] mx-8 mb-4"/>
     <div class="flex flex-row">
-      <img src="../assets/theytrustus.jpg" alt="Quote" class="mx-8 w-10 h-10 rounded-full"/>
-      <div class="flex flex-col">
+      <div class="flex flex-col mx-8">
         <p class="they-trust-us-person-name">{{ authorName }}</p>
         <p class="body-small-regular">{{ authorRole }}</p>
       </div>
