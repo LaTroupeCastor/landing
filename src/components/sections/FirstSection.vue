@@ -28,7 +28,7 @@
           Obtenez des aides pour vos travaux et un accompagnement humain de A à Z
         </div>
         <div class="mt-6">
-          <Button :cta="true">Faire une simulation</Button>
+          <router-link to="/simulation"><Button :cta="true">Faire une simulation</Button></router-link>
           <div class="flex mt-4">
             <Checkbox :text="'Gratuit'" class="pr-4"/>
             <Checkbox :text="'Sans engagement'"/>
