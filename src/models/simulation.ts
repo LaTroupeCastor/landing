@@ -91,7 +91,7 @@ export enum WorkType {
     HEATING = 'heating',
     VENTILATION = 'ventilation',
     WINDOWS = 'windows',
-    GLOBAL_RENOVATION = 'global'
+    GLOBAL_RENOVATION = 'global_renovation'
 }
 
 export interface Simulation {
