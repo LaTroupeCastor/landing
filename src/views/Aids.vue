@@ -54,7 +54,7 @@
         description="Dispositif national financé par les fournisseurs d'énergie pour inciter aux économies d'énergie."
         :conditions="[
           'Accessible à tous les propriétaires ou locataires',
-          'Travaux réalisés par un artisan certifié RGE (Reconnu Garant de l'Environnement)',
+          'Travaux réalisés par un artisan certifié RGE (Reconnu Garant de l\'Environnement)',
           'Travaux éligibles : isolation, chaudières performantes, pompes à chaleur, etc.'
         ]"
         link="https://www.service-public.fr/particuliers/vosdroits/F35584"

@@ -7,9 +7,9 @@
         pour garantir la réussite de votre projet de rénovation énergétique. C'est notre priorité absolue !
       </div>
       <div class="hidden md:flex flex-row space-x-4">
-        <img :src="Facebook" alt="Facebook" />
-        <img :src="Twitter" alt="Twitter" />
-        <img :src="Instagram" alt="Instagram" />
+        <a href="https://www.instagram.com/latroupecastor" target="_blank" rel="noopener noreferrer">
+          <img :src="Instagram" alt="Instagram" />
+        </a>
       </div>
     </div>
     <div class="flex flex-col">
@@ -22,15 +22,13 @@
       </div>
     </div>
     <div class="flex md:hidden flex-row space-x-4">
-      <img :src="Facebook" alt="Facebook" />
-      <img :src="Twitter" alt="Twitter" />
-      <img :src="Instagram" alt="Instagram" />
+      <a href="https://www.instagram.com/latroupecastor" target="_blank" rel="noopener noreferrer">
+        <img :src="Instagram" alt="Instagram" />
+      </a>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import CastorFooter from '../assets/castor_footer.svg';
-import Facebook from '../assets/facebok.svg';
-import Twitter from '../assets/twitter.svg';
 import Instagram from '../assets/insta.svg';
 </script>
