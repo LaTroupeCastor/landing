@@ -8,6 +8,8 @@ import SimulationFinalForm from "../components/SimulationFinalForm.vue";
 import {supabase} from "../supabase_client.ts";
 import {ToastType} from "../store/toastStore.ts";
 import { useToastStore } from '../store/toastStore';
+import previousSvg from '../assets/previous.svg';
+import nextSvg from '../assets/next.svg';
 
 const {
   simulationData,
@@ -170,7 +172,7 @@ onMounted(() => {
         <div class="flex justify-between mt-10 md:mt-20">
           <Button
             :disabled="currentQuestionIndex === 0 && currentSubQuestionIndex === 0"
-            leading-icon="./src/assets/previous.svg"
+            :leading-icon="previousSvg"
             class="text-primary-100 title-small-sbold w-12 sm:w-auto"
             @click="previousQuestion"
             aria-label="Question précédente"
@@ -180,7 +182,7 @@ onMounted(() => {
           <Button
             :cta=true
             :disabled="isNextDisabled"
-            trailing-icon="./src/assets/next.svg"
+            :trailing-icon="nextSvg"
             class="text-primary-100 title-small-sbold w-12 sm:w-auto"
             @click="nextQuestion"
             aria-label="Question suivante"
