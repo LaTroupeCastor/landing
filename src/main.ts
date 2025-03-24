@@ -4,7 +4,7 @@ import App from './App.vue'
 import { createPinia } from 'pinia'
 import router from './router'
 import './style/style.css'
-import VueGtm from 'vue-gtm'
+import VueGtag from 'vue-gtag'
 
 
 const app = createApp(App)
@@ -12,11 +12,11 @@ const pinia = createPinia()
 
 app.use(pinia)
 app.use(router)
-app.use(VueGtm, {
-    id: 'G-3Q6LFDQ93Z',
-    vueRouter: router,
-    enabled: true,
-    debug: false,
-    loadScript: true,
-})
+
+// Google Analytics via vue-gtag (GA4 direct)
+app.use(VueGtag, {
+    config: { id: 'G-3Q6LFDQ93Z' },
+    appName: 'MyVueApp', // facultatif
+    pageTrackerScreenviewEnabled: true
+  }, router)
 app.mount('#app')
