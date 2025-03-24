@@ -13,7 +13,7 @@ const pinia = createPinia()
 app.use(pinia)
 app.use(router)
 app.use(VueGtm, {
-    id: 'GTM-KVNNQGLJ',
+    id: 'G-3Q6LFDQ93Z',
     vueRouter: router,
     enabled: true,
     debug: false,
