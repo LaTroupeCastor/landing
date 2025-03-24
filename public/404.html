@@ -20,9 +20,11 @@
             max-width: 500px;
         }
         img {
-            width: min(100%, 400px);
+            width: min(100%, 320px); /* Réduit de 400px à 320px */
             height: auto;
-            margin-bottom: 2rem;
+            margin: 0 auto 1.5rem; /* Centrage horizontal */
+            display: block; /* Pour le centrage avec margin auto */
+            object-fit: contain; /* Conserve les proportions */
         }
         h1 {
             color: #1A237E;
@@ -40,9 +42,20 @@
 </head>
 <body>
     <div class="container">
-        <img src="404@4x.png" alt="Erreur 404 - Page non trouvée">
-        <h1>Oups ! Cette page est introuvable</h1>
-        <p>Pas de panique, vous pouvez retourner à la page d'accueil pour continuer votre visite.</p>
+        <img src="404@4x.png" alt="Castor perplexe - Page non trouvée">
+        <h1>Un castor a mangé cette page !</h1>
+        <div>
+            Notre équipe de rongeurs travaille d'arrache-patte pour la récupérer.<br>
+            En attendant, vous pouvez :
+            <ul style="list-style: none; padding: 0; text-align: left; display: inline-block;">
+                <li>🐿️ Lui proposer des noisettes en échange</li>
+                <li>🦫 Lui faire un gros câlin (attention aux dents !)</li>
+                <li>🌊 Retourner à la rivière d'accueil</li>
+            </ul>
+        </div>
+        <a href="/" style="display: inline-block; margin-top: 2rem; padding: 10px 20px; background: #1A237E; color: white; text-decoration: none; border-radius: 5px;">
+            Nager vers l'accueil
+        </a>
     </div>
 </body>
 </html>
