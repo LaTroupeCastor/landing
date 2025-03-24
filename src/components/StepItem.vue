@@ -8,7 +8,7 @@ defineProps<Props>();
 </script>
 
 <template>
-  <div class="bg-[#FBF3E4] p-8 rounded-lg">
+  <div class="bg-primary-20 p-8 rounded-lg">
     <div class="text-5xl font-semibold text-primary-100 mb-4">{{ number }}</div>
     <div class="body-small-regular">{{ text }}</div>
   </div>
