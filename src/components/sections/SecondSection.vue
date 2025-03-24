@@ -8,9 +8,9 @@
           subtitle="Un accompagnement humain, des résultats concrets"
         />
       </div>
-      <div class="flex justify-center items-center gap-8 pt-8">
-        <img src="../../assets/tete.svg" alt="Castor thinking" class="w-1/5" />
-        <div class="w-full max-w-2xl text-center body-large-regular">
+      <div class="flex justify-between items-center gap-8 pt-8">
+        <img src="../../assets/tete.svg" alt="Castor thinking" class="w-1/5 mx-auto" />
+        <div class="w-full max-w-2xl body-large-regular">
           <div class="pb-3">"Chez LaTroupeCastor, nous faisons plus que simplement vous mettre en relation avec des artisans qualifiés.</div>
           <div class="pb-3">Nous vous accompagnons du début à la fin de votre projet, tout en vous aidant à obtenir les aides financières auxquelles vous avez droit."</div>
           <div class="w-[10%] h-[6px] bg-primary-100 bg-opacity-20 my-3 mx-auto"></div>
@@ -29,8 +29,8 @@
         />
       </div>
       <div class="flex flex-col items-center gap-4 px-4">
-          <img src="../../assets/tete.svg" alt="Castor thinking" class="w-1/5" />
-          <div class="text-center body-small-regular md:body-medium-regular">
+          <img src="../../assets/tete.svg" alt="Castor thinking" class="w-1/5 mx-auto" />
+          <div class="body-small-regular md:body-medium-regular">
           <div class="pb-2">"Chez LaTroupeCastor, nous faisons plus que simplement vous mettre en relation avec des artisans qualifiés.</div>
           <div class="pb-2">Nous vous accompagnons du début à la fin de votre projet, tout en vous aidant à obtenir les aides financières auxquelles vous avez droit."</div>
           <div class="w-[10%] h-[6px] bg-primary-100 bg-opacity-20 my-3 mx-auto"></div>
