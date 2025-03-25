@@ -6,8 +6,8 @@ import { useRoute } from 'vue-router';
 import { computed } from "vue";
 
 const route = useRoute();
-const hideHeaderFooter = computed(() => 
-  ['simulation', 'login', 'signup'].includes(route.name?.toString() || '')
+const hideHeaderFooter = computed(() =>
+  ['simulation', 'login', 'signup', 'not-found'].includes(route.name?.toString() || '')
 );
 </script>
 
@@ -15,18 +15,18 @@ const hideHeaderFooter = computed(() =>
   <div class="h-screen flex flex-col">
     <!-- Header desktop -->
     <Header v-if="!hideHeaderFooter" class="hidden md:block" />
-    
+
     <!-- Header mobile -->
     <Header v-if="!hideHeaderFooter" class="md:hidden" />
 
     <div class="flex-grow">
       <router-view />
     </div>
-    
+
     <div class="mt-20" v-if="!hideHeaderFooter">
       <Footer />
     </div>
-    
+
     <ToastManager />
   </div>
 </template>

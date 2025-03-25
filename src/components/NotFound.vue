@@ -1,8 +1,11 @@
 <template>
-  <div class="not-found">
-    <h1>Page non trouvée</h1>
-    <p>Désolé, la page que vous recherchez n'existe pas.</p>
-    <router-link to="/">Retour à l'accueil</router-link>
+  <div class="not-found-container">
+    <img src="/404@4x.png" alt="Castor perplexe - Page non trouvée">
+    <h1>Un castor a mangé cette page !</h1>
+    <p>Notre équipe de rongeurs travaille d'arrache-patte pour la récupérer.</p>
+    <router-link to="/" class="home-button">
+      Nager vers l'accueil
+    </router-link>
   </div>
 </template>
 
@@ -15,31 +18,54 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.not-found {
+.not-found-container {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background-color: #F5F7FB;
   text-align: center;
-  padding: 50px 20px;
+  padding: 20px;
+}
+
+img {
+  width: min(100%, 320px);
+  height: auto;
+  margin: 0 auto 1.5rem;
+  object-fit: contain;
 }
 
 h1 {
-  font-size: 2.5rem;
+  color: #F1AB0E;
+  font-size: 2rem;
   margin-bottom: 1rem;
+  font-weight: 600;
 }
 
 p {
+  color: #455A64;
+  font-size: 1.1rem;
+  line-height: 1.5;
   margin-bottom: 2rem;
 }
 
-a {
+.home-button {
   display: inline-block;
+  margin-top: 2rem;
   padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
+  background: #F1AB0E;
+  color: #FFFFFF;
   text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: transform 0.2s ease;
 }
 
-a:hover {
-  background-color: #45a049;
+.home-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(241, 171, 14, 0.2);
 }
 </style>
